@@ -47,6 +47,7 @@ type
     Image1: TImage;
     Image2: TImage;
     Label1: TLabel;
+    Blero: TStyleBook;
     procedure btnQuitClick(Sender: TObject);
     procedure CMU_Montrose_LogoMouseEnter(Sender: TObject);
     procedure CMU_Montrose_LogoMouseLeave(Sender: TObject);

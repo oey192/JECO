@@ -14,6 +14,7 @@ type
     Image1: TImage;
     Image2: TImage;
     ImageViewer1: TImageViewer;
+    Blero: TStyleBook;
   private
     { Private declarations }
   public

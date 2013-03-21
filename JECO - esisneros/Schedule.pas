@@ -51,6 +51,7 @@ type
     btnRemove: TButton;
     lstSchedule: TListBox;
     Button1: TButton;
+    Blero: TStyleBook;
     procedure getDirsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);

@@ -1,0 +1,12 @@
+Fine Arts Building
+fa.txt
+Houston Hall
+hh.txt
+Lowell Heiny Hall
+llh.txt
+Maverick Center
+mc.txt
+Moss Performing Arts
+mpac.txt
+Wubben Science Building
+ws.txt

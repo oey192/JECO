@@ -9,10 +9,10 @@ uses
 
 type
   TForm1 = class(TForm)
-    cmbUserOptions: TComboBox;
-    ListBoxItem1: TListBoxItem;
-    ListBoxItem2: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
+    user_menu_options: TComboBox;
+    get_directions: TListBoxItem;
+    find_professor: TListBoxItem;
+    find_building: TListBoxItem;
     btnQuit: TButton;
     btnViewSchMap: TButton;
     btnEditSchedule: TButton;
@@ -23,31 +23,18 @@ type
     Destination: TLabel;
     start_building: TComboBox;
     start_room: TComboBox;
-    ListBoxItem7: TListBoxItem;
-    ListBoxItem8: TListBoxItem;
-    ListBoxItem9: TListBoxItem;
-    ListBoxItem10: TListBoxItem;
-    ListBoxItem11: TListBoxItem;
-    ListBoxItem12: TListBoxItem;
-    ListBoxItem13: TListBoxItem;
     CMU_Logo: TImage;
     CMU_Montrose_Logo: TImage;
     WCCC_Logo: TImage;
     Label4: TLabel;
     end_room: TComboBox;
-    ListBoxItem19: TListBoxItem;
     end_building: TComboBox;
-    ListBoxItem20: TListBoxItem;
-    ListBoxItem21: TListBoxItem;
-    ListBoxItem22: TListBoxItem;
-    ListBoxItem23: TListBoxItem;
-    ListBoxItem24: TListBoxItem;
-    ListBoxItem25: TListBoxItem;
     Panel3: TPanel;
     Image1: TImage;
     Image2: TImage;
     Label1: TLabel;
     Blero: TStyleBook;
+    default_option: TListBoxItem;
     procedure btnQuitClick(Sender: TObject);
     procedure CMU_Montrose_LogoMouseEnter(Sender: TObject);
     procedure CMU_Montrose_LogoMouseLeave(Sender: TObject);
@@ -64,6 +51,7 @@ type
     procedure start_buildingChange(Sender: TObject);
     procedure end_buildingChange(Sender: TObject);
     procedure btnEditScheduleClick(Sender: TObject);
+    procedure user_menu_optionsChange(Sender: TObject);
 
   private
     { Private declarations }
@@ -73,9 +61,17 @@ type
   end;
 
 type Campus_Selections = (NO_CAMPUS, CMU, WCCC, Montrose);
+type
+  rooms = array of string;
+  building = record
+  buildingName : string;
+  classrooms : rooms;
+  end;
+
 var
   Form1: TForm1;
   Campus : Campus_Selections;
+  campusBuildings : array of building;
 implementation
 
 {$R *.fmx}
@@ -105,6 +101,28 @@ begin
   WCCC_Logo.Opacity := 0.4;
   CMU_Montrose_Logo.Opacity := 0.4;
    Campus := CMU;
+
+   start_building.Clear;
+   start_building.Items.Add('-');
+   start_building.ItemIndex := 0;
+   start_building.Enabled := false;
+
+   start_room.Clear;
+   start_room.Items.Add('-');
+   start_room.ItemIndex := 0;
+   start_room.Enabled := false;
+
+   end_building.Clear;
+   end_building.Items.Add('-');
+   end_building.ItemIndex := 0;
+   end_building.Enabled := false;
+
+   end_room.Clear;
+   end_room.Items.Add('-');
+   end_room.ItemIndex := 0;
+   end_room.Enabled := false;
+
+  user_menu_options.ItemIndex := 0;   // Sets combobox to Choose An Option
 end;
 
 procedure TForm1.CMU_LogoMouseEnter(Sender: TObject);
@@ -124,6 +142,28 @@ begin
   WCCC_Logo.Opacity := 0.4;
   CMU_Montrose_Logo.Opacity := 1.0;
   Campus := Montrose;
+
+   start_building.Clear;
+   start_building.Items.Add('-');
+   start_building.ItemIndex := 0;
+   start_building.Enabled := false;
+
+   start_room.Clear;
+   start_room.Items.Add('-');
+   start_room.ItemIndex := 0;
+   start_room.Enabled := false;
+
+   end_building.Clear;
+   end_building.Items.Add('-');
+   end_building.ItemIndex := 0;
+   end_building.Enabled := false;
+
+   end_room.Clear;
+   end_room.Items.Add('-');
+   end_room.ItemIndex := 0;
+   end_room.Enabled := false;
+
+  user_menu_options.ItemIndex := 0;   // Sets combobox to Choose An Option
 end;
 
 procedure TForm1.CMU_Montrose_LogoMouseEnter(Sender: TObject);
@@ -138,59 +178,35 @@ begin
 end;
 
 procedure TForm1.end_buildingChange(Sender: TObject);
+var
+  indexFile : File;
+  building : integer;
+  i : integer;
+
 begin
-  end_room.Enabled := True;
-  if end_building.Items[end_building.ItemIndex] = 'Wubben Science Hall' then
-    begin
-      end_room.Clear;
-      end_room.Items.Add('Choose A Room');
-      end_room.Items.Add('WS-113');
-      end_room.Items.Add('WS-118');
-      end_room.Items.Add('WS-120');
-      end_room.Items.Add('WS-250');
-    end
-  else if end_building.Items[end_building.ItemIndex] = 'Moss Performing Arts' then
+  if end_building.Items[end_building.ItemIndex] <> 'Select A Building' then
   begin
-      end_room.Clear;
-      end_room.Items.Add('Choose A Room');
-      end_room.Items.Add('MPAC-114');
-      end_room.Items.Add('MPAC-115');
-      end_room.Items.Add('MPAC-123');
-      end_room.Items.Add('MPAC-154');
-  end
-  else if end_building.Items[end_building.ItemIndex] = 'Houston Hall' then
-  begin
-      end_room.Clear;
-      end_room.Items.Add('Choose A Room');
-      end_room.Items.Add('HH-104');
-      end_room.Items.Add('HH-106');
-      end_room.Items.Add('HH-121');
-      end_room.Items.Add('HH-150');
-  end
-  else if end_building.Items[end_building.ItemIndex] = 'Maverick Center' then
-  begin
-      end_room.Clear;
-      end_room.Items.Add('Choose A Room');
-      end_room.Items.Add('MAV-154');
-      end_room.Items.Add('MAV-162');
-      end_room.Items.Add('MAV-164');
-      end_room.Items.Add('MAV-193');
-  end
-  else if end_building.Items[end_building.ItemIndex] = 'Academic Classroom Building' then
-  begin
-      end_room.Clear;
-      end_room.Items.Add('Choose A Room');
-      end_room.Items.Add('ACB-104');
-      end_room.Items.Add('ACB-105');
-      end_room.Items.Add('ACB-203');
-      end_room.Items.Add('ACB-204');
-  end
-  else if end_building.Items[end_building.ItemIndex] = 'Select A Building' then
-  begin
-    end_room.ItemIndex := 0;
+    end_room.Enabled := True;
     end_room.Clear;
+    for i := 0 to Length(campusBuildings) - 1 do
+    begin
+       if end_building.Items[end_building.ItemIndex] = campusBuildings[i].buildingName then
+       begin
+        building := i;
+        break;
+       end;
+    end;
     end_room.Items.Add('Choose A Room');
-    end_room.Enabled := False;
+    end_room.ItemIndex := 0;
+    for i := 0 to Length(campusBuildings[building].classrooms) - 1 do
+    begin
+       end_room.Items.Add(campusBuildings[building].classrooms[i]);
+    end;
+  end
+  else
+  begin
+    end_room.Enabled := false;
+    end_room.Clear;
   end;
 end;
 
@@ -200,8 +216,6 @@ begin
   CMU_Logo.Opacity := 1.0;
   WCCC_Logo.Opacity := 0.4;
   CMU_Montrose_Logo.Opacity := 0.4;
-  end_room.Enabled := False;
-  start_room.Enabled := False
 end;
 
 procedure TForm1.getDirsClick(Sender: TObject);
@@ -210,59 +224,122 @@ begin
 end;
 
 procedure TForm1.start_buildingChange(Sender: TObject);
+var
+  indexFile : File;
+  building : integer;
+  i : integer;
+
 begin
-  start_room.Enabled := True;
-  if start_building.Items[start_building.ItemIndex] = 'Wubben Science Hall' then
-    begin
-      start_room.Clear;
-      start_room.Items.Add('Choose A Room');
-      start_room.Items.Add('WS-113');
-      start_room.Items.Add('WS-118');
-      start_room.Items.Add('WS-120');
-      start_room.Items.Add('WS-250');
-    end
-  else if start_building.Items[start_building.ItemIndex] = 'Moss Performing Arts' then
+  if start_building.Items[start_building.ItemIndex] <> 'Select A Building' then
   begin
-      start_room.Clear;
-      start_room.Items.Add('Choose A Room');
-      start_room.Items.Add('MPAC-114');
-      start_room.Items.Add('MPAC-115');
-      start_room.Items.Add('MPAC-123');
-      start_room.Items.Add('MPAC-154');
-  end
-  else if start_building.Items[start_building.ItemIndex] = 'Houston Hall' then
-  begin
-      start_room.Clear;
-      start_room.Items.Add('Choose A Room');
-      start_room.Items.Add('HH-104');
-      start_room.Items.Add('HH-106');
-      start_room.Items.Add('HH-121');
-      start_room.Items.Add('HH-150');
-  end
-  else if start_building.Items[start_building.ItemIndex] = 'Maverick Center' then
-  begin
-      start_room.Clear;
-      start_room.Items.Add('Choose A Room');
-      start_room.Items.Add('MAV-154');
-      start_room.Items.Add('MAV-162');
-      start_room.Items.Add('MAV-164');
-      start_room.Items.Add('MAV-193');
-  end
-  else if start_building.Items[start_building.ItemIndex] = 'Academic Classroom Building' then
-  begin
-      start_room.Clear;
-      start_room.Items.Add('Choose A Room');
-      start_room.Items.Add('ACB-104');
-      start_room.Items.Add('ACB-105');
-      start_room.Items.Add('ACB-203');
-      start_room.Items.Add('ACB-204');
-  end
-  else if start_building.Items[start_building.ItemIndex] = 'Select A Building' then
-  begin
-    start_room.ItemIndex := 0;
+    start_room.Enabled := True;
     start_room.Clear;
+    for i := 0 to Length(campusBuildings) - 1 do
+    begin
+       if start_building.Items[start_building.ItemIndex] = campusBuildings[i].buildingName then
+       begin
+        building := i;
+        break;
+       end;
+    end;
     start_room.Items.Add('Choose A Room');
-    start_room.Enabled := False;
+    start_room.ItemIndex := 0;
+    for i := 0 to Length(campusBuildings[building].classrooms) - 1 do
+    begin
+       start_room.Items.Add(campusBuildings[building].classrooms[i]);
+    end;
+  end
+  else
+  begin
+    start_room.Enabled := false;
+    start_room.Clear;
+  end;
+end;
+
+procedure populate_getDirections(CampusFolder: String; start_building:TComboBox; end_building:TComboBox);
+ var
+   indexFileLocation : string;
+
+   campusFiles : TextFile;
+   campusRoomFilenames : array of string;
+
+   totalBuildings : integer;
+   totalRooms : integer;
+
+   i, j : integer;
+
+  begin
+   // Try to open the Index.txt file for reading campus information
+   indexFileLocation := 'rooms/' + CampusFolder + '/index.txt';
+   AssignFile(campusFiles, indexFileLocation);
+   Reset(campusFiles);
+
+   i := 1;
+   j := 1;
+   while not Eof(campusFiles) do
+    begin
+      setLength(campusBuildings, i);
+      setLength(campusRoomFilenames, j);
+      ReadLn(campusFiles, campusBuildings[i-1].buildingName);
+      ReadLn(campusFiles, campusRoomFilenames[j-1]);
+      i := i + 1;
+      j := j + 1;
+    end;
+    closeFile(campusFiles);
+
+    for I := 0 to Length(campusRoomFilenames) - 1 do
+    begin
+      AssignFile(campusFiles, 'rooms/' + CampusFolder + '/' + campusRoomFilenames[I]);
+      Reset(campusFiles);
+      j := 1;
+     while not Eof(campusFiles) do
+      begin
+        setLength(campusBuildings[I].classrooms, j);
+         ReadLn(campusFiles, campusBuildings[I].classrooms[j-1]);
+         j := j + 1;
+      end;
+      closeFile(campusFiles);
+    end;
+
+    start_building.Items.Clear;
+    start_building.Clear;
+    end_building.Items.Clear;
+    end_building.Clear;
+
+    start_building.Items.Add('Select A Building');
+    end_building.Items.Add('Select A Building');
+    for i := 0 to Length(campusBuildings) - 1 do
+      begin
+        start_building.Items.Add(campusBuildings[i].buildingName);
+        end_building.Items.Add(campusBuildings[i].buildingName);
+      end;
+    start_building.ItemIndex := 0;
+    start_building.Enabled := true;
+    end_building.ItemIndex := 0;
+    end_building.Enabled := true;
+
+end;
+
+procedure TForm1.user_menu_optionsChange(Sender: TObject);
+begin
+  if user_menu_options.Selected.Text = 'Get Directions' then
+  begin
+    if Campus = CMU then
+      begin
+         populate_getDirections('CMU', start_building, end_building); // Pass Folder Name
+      end
+    else if Campus = WCCC then
+      begin
+         populate_getDirections('WCCC', start_building, end_building); // Pass Folder Name
+      end
+    else if Campus = Montrose then
+      begin
+         populate_getDirections('Montrose', start_building, end_building); // Pass Folder Name
+      end
+    else if Campus = NO_CAMPUS then
+     begin
+       ShowMessage('Are you hacking? Don''t break too much stuff. ''ight?');
+     end;
   end;
 end;
 
@@ -271,7 +348,29 @@ begin
   CMU_Logo.Opacity := 0.4;
   WCCC_Logo.Opacity := 1.0;
   CMU_Montrose_Logo.Opacity := 0.4;
-   Campus := WCCC;
+  Campus := WCCC;
+
+   start_building.Clear;
+   start_building.Items.Add('-');
+   start_building.ItemIndex := 0;
+   start_building.Enabled := false;
+
+   start_room.Clear;
+   start_room.Items.Add('-');
+   start_room.ItemIndex := 0;
+   start_room.Enabled := false;
+
+   end_building.Clear;
+   end_building.Items.Add('-');
+   end_building.ItemIndex := 0;
+   end_building.Enabled := false;
+
+   end_room.Clear;
+   end_room.Items.Add('-');
+   end_room.ItemIndex := 0;
+   end_room.Enabled := false;
+
+  user_menu_options.ItemIndex := 0;   // Sets combobox to Choose An Option
 end;
 
 procedure TForm1.WCCC_LogoMouseEnter(Sender: TObject);

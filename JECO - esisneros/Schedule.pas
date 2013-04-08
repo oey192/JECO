@@ -45,6 +45,11 @@ type
     coursePrefix: TComboBox;
     courseSuffix: TComboBox;
     professorList: TComboBox;
+    Label_PPass: TLabel;
+    PPass_ComboBox: TComboBox;
+    PP_G24: TListBoxItem;
+    PP_P5: TListBoxItem;
+    PP_G10: TListBoxItem;
     procedure getDirsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);

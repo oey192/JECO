@@ -4,7 +4,8 @@ uses
   FMX.Forms,
   JECOMap in 'JECOMap.pas' {Form1},
   Map in 'Map.pas' {MapForm},
-  Schedule in 'Schedule.pas' {Form2};
+  Schedule in 'Schedule.pas' {Form2},
+  FindProfessor in 'FindProfessor.pas' {find_professor_form};
 
 {$R *.res}
 
@@ -13,5 +14,6 @@ begin
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TMapForm, MapForm);
   Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(Tfind_professor_form, find_professor_form);
   Application.Run;
 end.

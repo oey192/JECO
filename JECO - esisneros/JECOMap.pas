@@ -76,7 +76,7 @@ implementation
 
 {$R *.fmx}
 
-uses Map, Schedule;
+uses Map, Schedule, FindProfessor;
 
 
 procedure TForm1.btnEditScheduleClick(Sender: TObject);
@@ -341,6 +341,13 @@ begin
        ShowMessage('Are you hacking? Don''t break too much stuff. ''ight?');
      end;
   end;
+
+  if user_menu_options.Selected.Text = 'Find Professor' then
+  begin
+    find_professor_form.Show();
+    user_menu_options.ItemIndex := 0;
+  end;
+
 end;
 
 procedure TForm1.WCCC_LogoClick(Sender: TObject);

@@ -76,7 +76,7 @@ implementation
 
 {$R *.fmx}
 
-uses Map, Schedule, FindProfessor;
+uses Map, Schedule, FindProfessor, wubben;
 
 
 procedure TForm1.btnEditScheduleClick(Sender: TObject);
@@ -220,7 +220,17 @@ end;
 
 procedure TForm1.getDirsClick(Sender: TObject);
 begin
-    MapForm.Visible := true;
+    //MapForm.Visible := true;
+    {if start_building.Items.Count > 0 then
+      if (start_building.Selected.Text = 'Wubben Science Building') and (end_building.Selected.Text = 'Wubben Science Building') then
+      begin}
+        wubbenScience.showPath(start_room.Selected.Text, end_room.Selected.Text);
+        wubbenScience.Show;
+      {end
+      else
+        showMessage('Only Wubben Science has been implemented')
+    else
+      showMessage('You must select an option ');  }
 end;
 
 procedure TForm1.start_buildingChange(Sender: TObject);

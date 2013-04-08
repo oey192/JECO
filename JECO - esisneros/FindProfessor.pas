@@ -48,7 +48,6 @@ type
     email_name: TEdit;
     phone_name: TEdit;
     ListBoxItem2: TListBoxItem;
-    Blero: TStyleBook;
     findProfessor_button: TButton;
     wubbenScience_building: TImage;
     FloatAnimation1: TFloatAnimation;
@@ -57,6 +56,7 @@ type
     reset_button: TButton;
     return_button: TButton;
     Label1: TLabel;
+    StyleBook1: TStyleBook;
     procedure FormShow(Sender: TObject);
     procedure campus_optionChange(Sender: TObject);
     procedure department_comboBoxChange(Sender: TObject);
@@ -354,6 +354,8 @@ begin
           end;
        end;
   end;
+
+
 
 procedure Tfind_professor_form.FormShow(Sender: TObject);
 begin

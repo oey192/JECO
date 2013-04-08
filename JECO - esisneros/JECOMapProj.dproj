@@ -108,9 +108,6 @@
         <DCCReference Include="FindProfessor.pas">
             <Form>find_professor_form</Form>
         </DCCReference>
-        <DCCReference Include="wubben.pas">
-            <Form>wubbenScience</Form>
-        </DCCReference>
         <None Include="sched.jeco"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

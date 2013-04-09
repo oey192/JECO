@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
-  JECOMap, FMX.Layouts, FMX.ExtCtrls;
+  JECOMap, FMX.Layouts, FMX.ExtCtrls, FMX.Effects, FMX.Filter.Effects;
 
 type
   TwubbenScience = class(TForm)
@@ -52,12 +52,25 @@ type
     Line41: TLine;
     Line42: TLine;
     Line43: TLine;
-    Button1: TButton;
     StyleBook1: TStyleBook;
     ImageViewer1: TImageViewer;
+    Image1: TImage;
+    Panel1: TPanel;
+    Return: TButton;
+    FillEffect1: TFillEffect;
+    FindProfessor_Title: TLabel;
+    ShadowEffect1: TShadowEffect;
+    end_title: TLabel;
+    ShadowEffect2: TShadowEffect;
+    start_title: TLabel;
+    ShadowEffect3: TShadowEffect;
+    start_label: TLabel;
+    end_label: TLabel;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
+    procedure ReturnClick(Sender: TObject);
+    procedure ImageViewer1Resize(Sender: TObject);
   private
     { Private declarations }
   public
@@ -162,6 +175,21 @@ begin
   setLineVisibility(false);
 end;
 
+procedure TwubbenScience.ImageViewer1Resize(Sender: TObject);
+begin
+if imageviewer1.Width > 1222 then
+imageviewer1.Width := 1222;
+
+if imageviewer1.Height > 815 then
+imageviewer1.Height := 815;
+
+end;
+
+procedure TwubbenScience.ReturnClick(Sender: TObject);
+begin
+wubbenscience.Hide;
+end;
+
 procedure Twubbenscience.setLineVisibility(tf : boolean);
 begin
   Line1.Visible := tf;
@@ -213,8 +241,13 @@ procedure Twubbenscience.showPath(start, finish: String);
 var i, index, startNum, finishNum : Integer;
 begin
 
-//if (start = '') or (finish = '') then
+if (start = 'Choose A Room') or (finish = 'Choose A Room') then
+  setLineVisibility(true)
+else
+begin
 
+start_label.Text := start;
+end_label.Text := finish;
 
 setLineVisibility(false);
 
@@ -224,11 +257,11 @@ for i := 1 to Length(finish) do
     index := i;
 
   {if finish[index] = '1' then
-    Image1.BringToFront
+    ImageViewer1.Bitmap.LoadFromFile('maps/action_findProfessor/WS/1st_floor.png')
   else if finish[index] = '2' then
-    Image2.BringToFront
+    ImageViewer1.Bitmap.LoadFromFile('maps/action_findProfessor/WS/2nd_floor.png')
   else if finish[index] = '3' then
-    Image3.BringToFront;}
+    ImageViewer1.Bitmap.LoadFromFile('maps/action_findProfessor/WS/3rd_floor.png');}
 
   //add code to make following apply to first floor only
 
@@ -264,6 +297,13 @@ for i := 1 to Length(finish) do
     Line5.BringToFront;
     Line5.Visible := true;
   end;
+
+  if (((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22)) and not((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22))) or (((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22)) and not((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22))) then
+  begin
+    Line21.BringToFront;
+    Line21.Visible := true;
+  end;
 end;
 
+end;
 end.

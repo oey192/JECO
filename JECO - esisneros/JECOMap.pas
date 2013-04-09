@@ -52,6 +52,7 @@ type
     procedure end_buildingChange(Sender: TObject);
     procedure btnEditScheduleClick(Sender: TObject);
     procedure user_menu_optionsChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     { Private declarations }
@@ -81,8 +82,8 @@ uses Map, Schedule, FindProfessor, wubben;
 
 procedure TForm1.btnEditScheduleClick(Sender: TObject);
 begin
-   Form2.Show();
-
+   Form2.Show;
+   Form1.Hide;
 end;
 
 procedure TForm1.btnQuitClick(Sender: TObject);
@@ -208,6 +209,11 @@ begin
     end_room.Enabled := false;
     end_room.Clear;
   end;
+end;
+
+procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  application.Terminate;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

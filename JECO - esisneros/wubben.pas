@@ -66,6 +66,12 @@ type
     ShadowEffect3: TShadowEffect;
     start_label: TLabel;
     end_label: TLabel;
+    LineTransitionEffect1: TLineTransitionEffect;
+    Line44: TLine;
+    Line45: TLine;
+    Line46: TLine;
+    Line47: TLine;
+    Line48: TLine;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
@@ -172,6 +178,16 @@ begin
   Line42.StrokeThickness := 5;
   Line43.Stroke.Color := TAlphaColorRec.Deepskyblue;
   Line43.StrokeThickness := 5;
+  Line44.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line44.StrokeThickness := 5;
+  Line45.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line45.StrokeThickness := 5;
+  Line46.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line46.StrokeThickness := 5;
+  Line47.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line47.StrokeThickness := 5;
+  Line48.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line48.StrokeThickness := 5;
   setLineVisibility(false);
 end;
 
@@ -235,10 +251,15 @@ begin
   Line41.Visible := tf;
   Line42.Visible := tf;
   Line43.Visible := tf;
+  Line44.Visible := tf;
+  Line45.Visible := tf;
+  Line46.Visible := tf;
+  Line47.Visible := tf;
+  Line48.Visible := tf;
 end;
 
 procedure Twubbenscience.showPath(start, finish: String);
-var i, index, startNum, finishNum : Integer;
+var i, index, startNum, finishNum, floorNum : Integer;
 begin
 
 if (start = 'Choose A Room') or (finish = 'Choose A Room') then
@@ -267,8 +288,9 @@ for i := 1 to Length(finish) do
 
   startNum := strToInt(start[index + 1] + start[index + 2]);
   finishNum := strToInt(finish[index + 1] + finish[index + 2]);
+  floorNum := strToInt(finish[index]);
 
-  if ((startNum > 10) and (finishNum < 10)) or ((finishNum > 10) and (startNum < 10)) then
+  if (((startNum > 6) and (startNum <> 7)) and ((finishNum < 6) or (finishNum = 7))) or (((finishNum > 6) and (finishNum <> 7)) and ((startNum < 6) or (startNum = 7))) then
   begin
     Line1.BringToFront;
     Line1.Visible := true;
@@ -292,10 +314,16 @@ for i := 1 to Length(finish) do
     Line4.Visible := true;
   end;
 
-  if (((finishNum < 18) and (finishNum <> 15) and (finishNum <> 17)) and ((startNum = 17) or (startNum = 15))) or (((startNum < 18) and (startNum <> 15) and (startNum <> 17)) and ((finishNum = 17) or (finishNum = 15))) or (((startNum < 20) and (startNum <> 15) and (startNum <> 17)) and (finishNum > 20)) or (((finishNum < 20) and (finishNum <> 15) and (finishNum <> 17)) and (startNum > 20)) then
+  if (((finishNum < 18) and (finishNum <> 15) and (finishNum <> 17)) and ((startNum = 17) or (startNum = 15))) or (((startNum < 18) and (startNum <> 15) and (startNum <> 17)) and ((finishNum = 17) or (finishNum = 15))) or (((startNum < 19) and (startNum <> 15) and (startNum <> 17)) and ((finishNum > 18) and (finishNum <> 22)) or (((finishNum < 19) and (finishNum <> 15) and (finishNum <> 17)) and ((startNum > 18) and (startNum <> 22)))) then
   begin
     Line5.BringToFront;
     Line5.Visible := true;
+  end;
+
+  if ((startNum > 18) and (finishNum < 19) and (startNum <> 22) and (finishNum <> 22)) or ((finishNum > 19) and (startNum < 19) and (startNum <> 22) and (finishNum <> 22)) or ((startNum = 22) and (finishNum > 19)) then
+  begin
+    Line6.BringToFront;
+    Line6.Visible := true;
   end;
 
   if (((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22)) and not((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22))) or (((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22)) and not((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22))) then
@@ -303,6 +331,50 @@ for i := 1 to Length(finish) do
     Line21.BringToFront;
     Line21.Visible := true;
   end;
+
+  if ((startNum < 4) and (finishNum > 3)) or ((finishNum < 4) and (startNum > 3)) then
+  begin
+    Line45.BringToFront;
+    Line45.Visible := true;
+  end;
+
+   if ((startNum < 6) and (finishNum > 5)) or ((finishNum < 6) and (startNum > 5)) then
+   begin
+     Line44.BringToFront;
+     Line44.Visible := true;
+   end;
+
+   if ((startNum < 7) and (finishNum > 7)) or ((finishNum < 7) and (startNum > 7)) then
+   begin
+     Line15.BringToFront;
+     Line15.Visible := true;
+   end;
+
+   if ((startNum < 8) and (finishNum > 8)) or ((finishNum < 8) and (startNum > 8)) then
+   begin
+     Line47.BringToFront;
+     Line47.Visible := true;
+   end;
+
+   if ((startNum < 9) and (finishNum > 9)) or ((finishNum < 9) and (startNum > 9)) then
+   begin
+     Line48.BringToFront;
+     Line48.Visible := true;
+   end;
+
+   if ((startNum = 10) and (finishNum <> 10)) or ((finishNum = 10) and (startNum <> 10)) then
+   begin
+     Line24.BringToFront;
+     Line24.Visible := true;
+   end;
+
+    if ((startNum < 19) and ((finishNum > 20) and (finishNum <> 22))) or ((finishNum < 19) and ((startNum > 20) and (startNum <> 22))) then
+   begin
+     Line7.BringToFront;
+     Line7.Visible := true;
+   end;
+
+
 end;
 
 end;

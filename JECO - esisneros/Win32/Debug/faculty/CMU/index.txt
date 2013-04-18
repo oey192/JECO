@@ -1,2 +1,4 @@
 Computer Science
-CompSci
+compSci
+Mathematics && Statistics
+mathStat

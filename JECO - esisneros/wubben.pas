@@ -9,49 +9,6 @@ uses
 
 type
   TwubbenScience = class(TForm)
-    Line1: TLine;
-    Line2: TLine;
-    Line3: TLine;
-    Line4: TLine;
-    Line5: TLine;
-    Line6: TLine;
-    Line7: TLine;
-    Line8: TLine;
-    Line9: TLine;
-    Line10: TLine;
-    Line11: TLine;
-    Line12: TLine;
-    Line13: TLine;
-    Line14: TLine;
-    Line15: TLine;
-    Line16: TLine;
-    Line17: TLine;
-    Line18: TLine;
-    Line19: TLine;
-    Line20: TLine;
-    Line21: TLine;
-    Line22: TLine;
-    Line23: TLine;
-    Line24: TLine;
-    Line25: TLine;
-    Line26: TLine;
-    Line27: TLine;
-    Line28: TLine;
-    Line29: TLine;
-    Line30: TLine;
-    Line31: TLine;
-    Line32: TLine;
-    Line33: TLine;
-    Line34: TLine;
-    Line35: TLine;
-    Line36: TLine;
-    Line37: TLine;
-    Line38: TLine;
-    Line39: TLine;
-    Line40: TLine;
-    Line41: TLine;
-    Line42: TLine;
-    Line43: TLine;
     StyleBook1: TStyleBook;
     ImageViewer1: TImageViewer;
     Image1: TImage;
@@ -67,11 +24,14 @@ type
     start_label: TLabel;
     end_label: TLabel;
     LineTransitionEffect1: TLineTransitionEffect;
-    Line44: TLine;
-    Line45: TLine;
-    Line46: TLine;
-    Line47: TLine;
-    Line48: TLine;
+    Line1: TLine;
+    Line2: TLine;
+    Line3: TLine;
+    Line4: TLine;
+    Line5: TLine;
+    Line6: TLine;
+    Line7: TLine;
+    Image2: TImage;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
@@ -106,88 +66,7 @@ begin
   Line6.StrokeThickness := 5;
   Line7.Stroke.Color := TAlphaColorRec.Deepskyblue;
   Line7.StrokeThickness := 5;
-  Line8.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line8.StrokeThickness := 5;
-  Line9.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line9.StrokeThickness := 5;
-  Line10.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line10.StrokeThickness := 5;
-  Line11.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line11.StrokeThickness := 5;
-  Line12.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line12.StrokeThickness := 5;
-  Line13.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line13.StrokeThickness := 5;
-  Line14.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line14.StrokeThickness := 5;
-  Line15.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line15.StrokeThickness := 5;
-  Line16.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line16.StrokeThickness := 5;
-  Line17.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line17.StrokeThickness := 5;
-  Line18.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line18.StrokeThickness := 5;
-  Line19.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line19.StrokeThickness := 5;
-  Line20.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line20.StrokeThickness := 5;
-  Line21.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line21.StrokeThickness := 5;
-  Line22.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line22.StrokeThickness := 5;
-  Line23.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line23.StrokeThickness := 5;
-  Line24.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line24.StrokeThickness := 5;
-  Line25.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line25.StrokeThickness := 5;
-  Line26.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line26.StrokeThickness := 5;
-  Line27.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line27.StrokeThickness := 5;
-  Line28.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line28.StrokeThickness := 5;
-  Line29.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line29.StrokeThickness := 5;
-  Line30.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line30.StrokeThickness := 5;
-  Line31.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line31.StrokeThickness := 5;
-  Line32.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line32.StrokeThickness := 5;
-  Line33.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line33.StrokeThickness := 5;
-  Line34.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line34.StrokeThickness := 5;
-  Line35.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line35.StrokeThickness := 5;
-  Line36.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line36.StrokeThickness := 5;
-  Line37.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line37.StrokeThickness := 5;
-  Line38.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line38.StrokeThickness := 5;
-  Line39.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line39.StrokeThickness := 5;
-  Line40.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line40.StrokeThickness := 5;
-  Line41.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line41.StrokeThickness := 5;
-  Line42.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line42.StrokeThickness := 5;
-  Line43.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line43.StrokeThickness := 5;
-  Line44.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line44.StrokeThickness := 5;
-  Line45.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line45.StrokeThickness := 5;
-  Line46.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line46.StrokeThickness := 5;
-  Line47.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line47.StrokeThickness := 5;
-  Line48.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  Line48.StrokeThickness := 5;
+
   setLineVisibility(false);
 end;
 
@@ -215,55 +94,19 @@ begin
   Line5.Visible := tf;
   Line6.Visible := tf;
   Line7.Visible := tf;
-  Line8.Visible := tf;
-  Line9.Visible := tf;
-  Line10.Visible := tf;
-  Line11.Visible := tf;
-  Line12.Visible := tf;
-  Line13.Visible := tf;
-  Line14.Visible := tf;
-  Line15.Visible := tf;
-  Line16.Visible := tf;
-  Line17.Visible := tf;
-  Line18.Visible := tf;
-  Line19.Visible := tf;
-  Line20.Visible := tf;
-  Line21.Visible := tf;
-  Line22.Visible := tf;
-  Line23.Visible := tf;
-  Line24.Visible := tf;
-  Line25.Visible := tf;
-  Line26.Visible := tf;
-  Line27.Visible := tf;
-  Line28.Visible := tf;
-  Line29.Visible := tf;
-  Line30.Visible := tf;
-  Line31.Visible := tf;
-  Line32.Visible := tf;
-  Line33.Visible := tf;
-  Line34.Visible := tf;
-  Line35.Visible := tf;
-  Line36.Visible := tf;
-  Line37.Visible := tf;
-  Line38.Visible := tf;
-  Line39.Visible := tf;
-  Line40.Visible := tf;
-  Line41.Visible := tf;
-  Line42.Visible := tf;
-  Line43.Visible := tf;
-  Line44.Visible := tf;
-  Line45.Visible := tf;
-  Line46.Visible := tf;
-  Line47.Visible := tf;
-  Line48.Visible := tf;
 end;
 
 procedure Twubbenscience.showPath(start, finish: String);
-var i, index, startNum, finishNum, floorNum : Integer;
+var i, j, index1, index2, startNum, finishNum, floor1Num, floor2Num : Integer;
+    line1End, line4End, line2Bot, lineBot,
+    prefix1, prefix2 : String;
 begin
 
 if (start = 'Choose A Room') or (finish = 'Choose A Room') then
-  setLineVisibility(true)
+begin
+  showMessage('You must select a room to get directions to');
+  //wubbenscience.Hide;
+end
 else
 begin
 
@@ -271,11 +114,25 @@ start_label.Text := start;
 end_label.Text := finish;
 
 setLineVisibility(false);
+Image2.Visible := false;
 
-index := -1;
+index1 := -1;
+index2 := -1;
+prefix1 := '';
+prefix2 := '';
+for i := 1 to Length(start) do
+  if (start[i] > '0') and (start[i] < '9') and (index1 = -1) then
+    index1 := i;
+
 for i := 1 to Length(finish) do
-  if (finish[i] > '0') and (finish[i] < '9') and (index = -1) then
-    index := i;
+  if (finish[i] > '0') and (finish[i] < '9') and (index2 = -1) then
+    index2 := i;
+
+for j := 1 to index1 - 1 do
+  prefix1 := prefix1 + start[j];
+
+for j := 1 to index2 - 1 do
+  prefix2 := prefix2 + finish[j];
 
   {if finish[index] = '1' then
     ImageViewer1.Bitmap.LoadFromFile('maps/action_findProfessor/WS/1st_floor.png')
@@ -286,96 +143,42 @@ for i := 1 to Length(finish) do
 
   //add code to make following apply to first floor only
 
-  startNum := strToInt(start[index + 1] + start[index + 2]);
-  finishNum := strToInt(finish[index + 1] + finish[index + 2]);
-  floorNum := strToInt(finish[index]);
+  startNum := strToInt(start[index1 + 1] + start[index1 + 2]);
+  finishNum := strToInt(finish[index2 + 1] + finish[index2 + 2]);
+  floor1Num := strToInt(start[index1]);
+  floor2Num := strToInt(finish[index2]);
 
-  if (((startNum > 6) and (startNum <> 7)) and ((finishNum < 6) or (finishNum = 7))) or (((finishNum > 6) and (finishNum <> 7)) and ((startNum < 6) or (startNum = 7))) then
+  if prefix1 = 'WS' then
   begin
-    Line1.BringToFront;
-    Line1.Visible := true;
-  end;
+    if prefix2 = 'WS' then
+    begin
+      showMessage('doing nothing yet');
+      //showWubben(strToInt(start[index]), startNum);
+       //implement multiple floors
+    end
+    else if prefix2 = 'HH' then
+    begin
+       line7.Visible := true;
 
-  if ((startNum > 11) and (finishNum < 11)) or ((finishNum > 11) and (startNum < 11)) then
+    end;
+
+  end
+  else if prefix1 = 'HH' then
   begin
-    Line2.BringToFront;
-    Line2.Visible := true;
+    if prefix2 = 'WS' then
+    begin
+
+    end
+    else if prefix2 = 'H' then
+    begin
+
+    end;
+
   end;
-
-  if ((startNum = 12) and (finishNum <> 12)) or ((finishNum = 12) and (startNum <> 12)) or ((startNum = 14) and (finishNum <> 14)) or ((finishNum = 14) and (startNum <> 14)) then
-  begin
-    Line3.BringToFront;
-    Line3.Visible := true;
-  end;
-
-  if ((startNum > 14) and (finishNum < 14)) or ((finishNum > 14) and (startNum < 14)) then
-  begin
-    Line4.BringToFront;
-    Line4.Visible := true;
-  end;
-
-  if (((finishNum < 18) and (finishNum <> 15) and (finishNum <> 17)) and ((startNum = 17) or (startNum = 15))) or (((startNum < 18) and (startNum <> 15) and (startNum <> 17)) and ((finishNum = 17) or (finishNum = 15))) or (((startNum < 19) and (startNum <> 15) and (startNum <> 17)) and ((finishNum > 18) and (finishNum <> 22)) or (((finishNum < 19) and (finishNum <> 15) and (finishNum <> 17)) and ((startNum > 18) and (startNum <> 22)))) then
-  begin
-    Line5.BringToFront;
-    Line5.Visible := true;
-  end;
-
-  if ((startNum > 18) and (finishNum < 19) and (startNum <> 22) and (finishNum <> 22)) or ((finishNum > 19) and (startNum < 19) and (startNum <> 22) and (finishNum <> 22)) or ((startNum = 22) and (finishNum > 19)) then
-  begin
-    Line6.BringToFront;
-    Line6.Visible := true;
-  end;
-
-  if (((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22)) and not((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22))) or (((finishNum = 16) or (finishNum = 18) or (finishNum = 20) or (finishNum = 22)) and not((startNum = 16) or (startNum = 18) or (startNum = 20) or (startNum = 22))) then
-  begin
-    Line21.BringToFront;
-    Line21.Visible := true;
-  end;
-
-  if ((startNum < 4) and (finishNum > 3)) or ((finishNum < 4) and (startNum > 3)) then
-  begin
-    Line45.BringToFront;
-    Line45.Visible := true;
-  end;
-
-   if ((startNum < 6) and (finishNum > 5)) or ((finishNum < 6) and (startNum > 5)) then
-   begin
-     Line44.BringToFront;
-     Line44.Visible := true;
-   end;
-
-   if ((startNum < 7) and (finishNum > 7)) or ((finishNum < 7) and (startNum > 7)) then
-   begin
-     Line15.BringToFront;
-     Line15.Visible := true;
-   end;
-
-   if ((startNum < 8) and (finishNum > 8)) or ((finishNum < 8) and (startNum > 8)) then
-   begin
-     Line47.BringToFront;
-     Line47.Visible := true;
-   end;
-
-   if ((startNum < 9) and (finishNum > 9)) or ((finishNum < 9) and (startNum > 9)) then
-   begin
-     Line48.BringToFront;
-     Line48.Visible := true;
-   end;
-
-   if ((startNum = 10) and (finishNum <> 10)) or ((finishNum = 10) and (startNum <> 10)) then
-   begin
-     Line24.BringToFront;
-     Line24.Visible := true;
-   end;
-
-    if ((startNum < 19) and ((finishNum > 20) and (finishNum <> 22))) or ((finishNum < 19) and ((startNum > 20) and (startNum <> 22))) then
-   begin
-     Line7.BringToFront;
-     Line7.Visible := true;
-   end;
-
 
 end;
 
 end;
+
+
 end.

@@ -32,11 +32,16 @@ type
     Line6: TLine;
     Line7: TLine;
     Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Image6: TImage;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
     procedure ReturnClick(Sender: TObject);
     procedure ImageViewer1Resize(Sender: TObject);
+    procedure ImageViewer1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,6 +73,11 @@ begin
   Line7.StrokeThickness := 5;
 
   setLineVisibility(false);
+end;
+
+procedure TwubbenScience.ImageViewer1DblClick(Sender: TObject);
+begin
+  ShowMessage('H: ' + floattostr(imageviewer1.HScrollBar.Value) + ' V: ' + floattostr(imageviewer1.VScrollBar.Value));
 end;
 
 procedure TwubbenScience.ImageViewer1Resize(Sender: TObject);
@@ -115,6 +125,10 @@ end_label.Text := finish;
 
 setLineVisibility(false);
 Image2.Visible := false;
+Image3.Visible := false;
+Image4.Visible := false;
+Image5.Visible := false;
+Image6.Visible := false;
 
 index1 := -1;
 index2 := -1;
@@ -128,10 +142,10 @@ for i := 1 to Length(finish) do
   if (finish[i] > '0') and (finish[i] < '9') and (index2 = -1) then
     index2 := i;
 
-for j := 1 to index1 - 1 do
+for j := 1 to index1 - 2 do
   prefix1 := prefix1 + start[j];
 
-for j := 1 to index2 - 1 do
+for j := 1 to index2 - 2 do
   prefix2 := prefix2 + finish[j];
 
   {if finish[index] = '1' then
@@ -148,18 +162,38 @@ for j := 1 to index2 - 1 do
   floor1Num := strToInt(start[index1]);
   floor2Num := strToInt(finish[index2]);
 
+  //showMessage('floor1Num: ' + inttostr(floor1Num) + ' pref1: ' + prefix1 + ' pref2: ' + prefix2);
+
   if prefix1 = 'WS' then
   begin
-    if prefix2 = 'WS' then
+    if prefix2 = 'WSa' then
     begin
       showMessage('doing nothing yet');
       //showWubben(strToInt(start[index]), startNum);
        //implement multiple floors
     end
-    else if prefix2 = 'HH' then
+    else if prefix2 = 'WS' then
     begin
        line7.Visible := true;
+       Image2.Position.Y := 729;
+       Image2.Position.X := 975;
+       Image2.RotationAngle := 180;
+       Image2.Visible := true;
+       if floor1Num = 1 then
+       begin
+         if True then
+         begin
+           if startNum > 44 then
+           begin
+             Line3.Visible := true;
+             Line1.Visible := true;
+             Line1.Position.X := 771;
+             Line1.Width := 215;
 
+           end;
+
+         end;
+       end;
     end;
 
   end

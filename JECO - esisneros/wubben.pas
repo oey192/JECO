@@ -36,12 +36,15 @@ type
     Image4: TImage;
     Image5: TImage;
     Image6: TImage;
+    Label1: TLabel;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
     procedure ReturnClick(Sender: TObject);
     procedure ImageViewer1Resize(Sender: TObject);
     procedure ImageViewer1DblClick(Sender: TObject);
+    procedure ImageViewer1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Single);
   private
     { Private declarations }
   public
@@ -78,6 +81,12 @@ end;
 procedure TwubbenScience.ImageViewer1DblClick(Sender: TObject);
 begin
   ShowMessage('H: ' + floattostr(imageviewer1.HScrollBar.Value) + ' V: ' + floattostr(imageviewer1.VScrollBar.Value));
+end;
+
+procedure TwubbenScience.ImageViewer1MouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Single);
+begin
+  Label1.Text := 'X: ' + floattostr(x) + ' Y: ' + floatToStr(y);
 end;
 
 procedure TwubbenScience.ImageViewer1Resize(Sender: TObject);
@@ -175,8 +184,8 @@ for j := 1 to index2 - 2 do
     else if prefix2 = 'WS' then
     begin
        line7.Visible := true;
-       Image2.Position.Y := 729;
-       Image2.Position.X := 975;
+       Image2.Position.Y := 717;
+       Image2.Position.X := 977;
        Image2.RotationAngle := 180;
        Image2.Visible := true;
        if floor1Num = 1 then
@@ -187,8 +196,17 @@ for j := 1 to index2 - 2 do
            begin
              Line3.Visible := true;
              Line1.Visible := true;
-             Line1.Position.X := 771;
-             Line1.Width := 215;
+             Line1.Position.X := 769;
+             Line1.Width := 217;
+             Image3.Position.X := 975;
+             Image3.Position.Y := 631;
+             Image3.RotationAngle := 90;
+             Image3.Visible := true;
+
+             Image4.Position.Y := 627;
+             Image4.Position.X := 760;
+             Image4.RotationAngle := 180;
+             Image4.Visible := true;
 
            end;
 

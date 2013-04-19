@@ -24473,6 +24473,7 @@ object wubbenScience: TwubbenScience
     Width = 1210.000000000000000000
     OnResize = ImageViewer1Resize
     OnDblClick = ImageViewer1DblClick
+    OnMouseMove = ImageViewer1MouseMove
     Bitmap.PNG = {
       89504E470D0A1A0A0000000D49484452000004B90000032A08060000006E6E93
       AE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
@@ -28376,7 +28377,7 @@ object wubbenScience: TwubbenScience
       Width = 9.000000000000000000
     end
     object Line3: TLine
-      Height = 441.000000000000000000
+      Height = 444.000000000000000000
       LineType = ltLeft
       Position.X = 768.000000000000000000
       Position.Y = 200.000000000000000000
@@ -53840,5 +53841,12 @@ object wubbenScience: TwubbenScience
   object LineTransitionEffect1: TLineTransitionEffect
     Progress = 30.000000000000000000
     FuzzyAmount = 0.100000001490116100
+  end
+  object Label1: TLabel
+    Height = 15.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 256.000000000000000000
+    Text = 'Label1'
+    Width = 153.000000000000000000
   end
 end

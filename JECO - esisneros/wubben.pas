@@ -121,14 +121,6 @@ var i, j, index1, index2, startNum, finishNum, floor1Num, floor2Num : Integer;
     prefix1, prefix2 : String;
 begin
 
-if (start = 'Choose A Room') or (finish = 'Choose A Room') then
-begin
-  showMessage('You must select a room to get directions to');
-  //wubbenscience.Hide;
-end
-else
-begin
-
 start_label.Text := start;
 end_label.Text := finish;
 
@@ -175,13 +167,13 @@ for j := 1 to index2 - 2 do
 
   if prefix1 = 'WS' then
   begin
-    if prefix2 = 'WSa' then
+    if prefix2 = 'WS' then
     begin
       showMessage('doing nothing yet');
       //showWubben(strToInt(start[index]), startNum);
        //implement multiple floors
     end
-    else if prefix2 = 'WS' then
+    else if prefix2 = 'HH' then
     begin
        line7.Visible := true;
        Image2.Position.Y := 717;
@@ -190,27 +182,116 @@ for j := 1 to index2 - 2 do
        Image2.Visible := true;
        if floor1Num = 1 then
        begin
-         if True then
-         begin
-           if startNum > 44 then
+           if startNum > 45 then
            begin
-             Line3.Visible := true;
-             Line1.Visible := true;
-             Line1.Position.X := 769;
-             Line1.Width := 217;
-             Image3.Position.X := 975;
-             Image3.Position.Y := 631;
-             Image3.RotationAngle := 90;
-             Image3.Visible := true;
+              Line4.Visible := true;
+              Line3.Visible := true;
+              Line1.Visible := true;
+              Line1.Position.X := 769;
+              Line1.Width := 217;
+              Image3.Position.X := 975;
+              Image3.Position.Y := 631;
+              Image3.RotationAngle := 90;
+              Image3.Visible := true;
 
-             Image4.Position.Y := 627;
-             Image4.Position.X := 760;
-             Image4.RotationAngle := 180;
-             Image4.Visible := true;
+              Image4.Position.Y := 627;
+              Image4.Position.X := 760;
+              Image4.RotationAngle := 180;
+              Image4.Visible := true;
+
+              Image5.Position.X := 758;
+              Image5.Position.Y := 188;
+              Image5.RotationAngle := 90;
+              Image5.Visible := true;
+
+              if startNum = 63 then
+              begin
+                //placeholder for completeness - nothing acutally needs to be done in this if
+              end
+              else if startNum = 62 then
+              begin
+                  Line5.Position.Y := 198;
+                  Line5.Height := 38;
+                  Line5.Visible := true;
+
+                  Image6.Position.X := 114;
+                  Image6.Position.Y := 190;
+                  Image6.RotationAngle := 0;
+                  Image6.Visible := true;
+              end
+              else if startNum = 61 then
+              begin
+                  Line5.Position.Y := 160;
+                  Line5.Height := 38;
+                  Line5.Visible := true;
+
+                  Image6.Position.X := 114;
+                  Image6.Position.Y := 185;
+                  Image6.RotationAngle := 180;
+                  Image6.Visible := true;
+              end
+              else if startNum = 60 then
+              begin
+                  Line5.Position.Y := 168;
+                  Line5.Height := 30;
+                  Line5.Visible := true;
+
+                  Image6.Position.X := 114;
+                  Image6.Position.Y := 185;
+                  Image6.RotationAngle := 180;
+                  Image6.Visible := true;
+              end
+              else if startNum = 57 then
+              begin
+                Line4.Position.X := 298;
+                Line4.Width := 471;
+              end
+              else if startNum = 56 then
+              begin
+                Line4.Position.X := 336;
+                Line4.Width := 433;
+              end
+              else if startNum = 55 then
+              begin
+                Line4.Position.X := 435;
+                Line4.Width := 334;
+              end
+              else if (startNum = 54) or (startNum = 53) then
+              begin
+                Line4.Position.X := 461;
+                Line4.Width := 308;
+              end;
+
+           end
+           else if startNum > 35 then
+           begin
+              Line3.Visible := true;
+              Line1.Visible := true;
+              Line1.Position.X := 769;
+              Line1.Width := 217;
+              Image3.Position.X := 975;
+              Image3.Position.Y := 631;
+              Image3.RotationAngle := 90;
+              Image3.Visible := true;
+
+              Image4.Position.Y := 627;
+              Image4.Position.X := 760;
+              Image4.RotationAngle := 180;
+              Image4.Visible := true;
+
+           end
+           else if startNum = 34 then
+           begin
+
+           end
+           else if startNum = 31 then
+           begin
+
+           end
+           else
+           begin
 
            end;
-
-         end;
        end;
     end;
 
@@ -227,8 +308,6 @@ for j := 1 to index2 - 2 do
     end;
 
   end;
-
-end;
 
 end;
 

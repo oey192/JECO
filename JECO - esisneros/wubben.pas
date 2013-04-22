@@ -37,6 +37,7 @@ type
     Image5: TImage;
     Image6: TImage;
     Label1: TLabel;
+    Nextbutton: TButton;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);

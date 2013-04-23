@@ -227,10 +227,13 @@ end;
 procedure TForm1.getDirsClick(Sender: TObject);
 begin
     if start_building.Items.Count > 0 then
-    begin
+      if (start_building.Selected.Text = 'Wubben Science Building') and (end_building.Selected.Text = 'Wubben Science Building') then
+      begin
         wubbenScience.showPath(start_room.Selected.Text, end_room.Selected.Text);
-        wubbenScience.Show;
-    end
+        wubbenScience.Show
+      end
+      else
+        showMessage('Only Wubben Science has been implemented')
     else
       showMessage('You must select an option ');
 end;

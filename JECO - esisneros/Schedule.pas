@@ -50,6 +50,15 @@ type
     PP_G24: TListBoxItem;
     PP_P5: TListBoxItem;
     PP_G10: TListBoxItem;
+    ListBoxItem1: TListBoxItem;
+    CSCI_Test: TListBoxItem;
+    ListBoxItem2: TListBoxItem;
+    ListBoxItem3: TListBoxItem;
+    Label1: TLabel;
+    Sec: TComboBox;
+    ListBoxItem4: TListBoxItem;
+    ListBoxItem5: TListBoxItem;
+    ListBoxItem6: TListBoxItem;
     procedure getDirsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
@@ -216,22 +225,38 @@ begin
 end;
 
 procedure TForm2.getDirsClick(Sender: TObject);
+var
+  courseab : string;
 begin
-    if (scheduleGrid.Selected = scheduleGrid.RowCount - 1) then
+courseab:='';
+
+  if (scheduleGrid.Selected = scheduleGrid.RowCount - 1) then
     begin
       scheduleGrid.RowCount := scheduleGrid.RowCount + 1;
     end
-    else if scheduleGrid.RowCount = 1 then
+  else if scheduleGrid.RowCount = 1 then
     begin
       scheduleGrid.RowCount := scheduleGrid.RowCount + 1;
     end;
 
-    scheduleGrid.Cells[0, scheduleGrid.Selected] := 'CSCI 112';
-    scheduleGrid.Cells[1, scheduleGrid.Selected] := 'WS-118';
-    scheduleGrid.Cells[2, scheduleGrid.Selected] := 'Dr. Lori Payne';
 
-    scheduleGrid.Selected := scheduleGrid.Selected + 1;
+if (courseprefix.ItemIndex >= 0) then
+  begin
+    courseab := courseprefix.Items[Courseprefix.ItemIndex];
+  end;
+if (coursesuffix.ItemIndex >= 0) then
+    begin
+      courseab := courseab + ' ' + coursesuffix.Items[coursesuffix.ItemIndex]
+    end;
+if (sec.ItemIndex >= 0) then
+begin
+   courseab := courseab + ' Sec. ' + sec.Items[sec.itemindex];
 end;
 
+  scheduleGrid.Cells[0, scheduleGrid.Selected] := courseab;
+  scheduleGrid.Cells[1, scheduleGrid.Selected] := 'WS-118';
+  scheduleGrid.Cells[2, scheduleGrid.Selected] := 'Dr. Lori Payne';
+  scheduleGrid.Selected := scheduleGrid.Selected + 1;
+end;
 
 end.

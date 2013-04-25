@@ -15,6 +15,7 @@ type
     Image2: TImage;
     ImageViewer1: TImageViewer;
     Blero: TStyleBook;
+    Label1: TLabel;
     procedure drawLine(x1, y1, x2, y2 : Integer);
     procedure FormCreate(Sender: TObject);
   private

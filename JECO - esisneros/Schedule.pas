@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.ListBox,
-  FMX.Edit, FMX.Objects, FMX.Layouts, FMX.Grid;
+  FMX.Edit, FMX.Objects, FMX.Layouts, FMX.Grid, FMX.Filter.Effects, FMX.Effects;
 
 type
   TForm2 = class(TForm)
@@ -16,20 +16,10 @@ type
     Panel1: TPanel;
     getDirs: TButton;
     Label3: TLabel;
-    Destination: TLabel;
-    end_room: TComboBox;
-    ListBoxItem19: TListBoxItem;
     CMU_Logo: TImage;
     CMU_Montrose_Logo: TImage;
     WCCC_Logo: TImage;
     title_CMUScheduleAndProfile: TLabel;
-    end_building: TComboBox;
-    ListBoxItem20: TListBoxItem;
-    ListBoxItem21: TListBoxItem;
-    ListBoxItem22: TListBoxItem;
-    ListBoxItem23: TListBoxItem;
-    ListBoxItem24: TListBoxItem;
-    ListBoxItem25: TListBoxItem;
     JECO_Logo: TImage;
     Copyright_footer: TLabel;
     Title_ChooseCampus: TLabel;
@@ -40,7 +30,6 @@ type
     Blero: TStyleBook;
     scheduleGrid: TStringGrid;
     colCourse: TStringColumn;
-    colLocation: TStringColumn;
     colProfessor: TStringColumn;
     coursePrefix: TComboBox;
     courseSuffix: TComboBox;
@@ -52,15 +41,36 @@ type
     PP_G10: TListBoxItem;
     ListBoxItem1: TListBoxItem;
     CSCI_Test: TListBoxItem;
-    ListBoxItem2: TListBoxItem;
-    ListBoxItem3: TListBoxItem;
+    c241: TListBoxItem;
+    c250: TListBoxItem;
     Label1: TLabel;
     Sec: TComboBox;
     ListBoxItem4: TListBoxItem;
     ListBoxItem5: TListBoxItem;
     ListBoxItem6: TListBoxItem;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    HueAdjustEffect1: THueAdjustEffect;
+    ShadowEffect1: TShadowEffect;
+    ListBoxItem7: TListBoxItem;
+    ListBoxItem8: TListBoxItem;
+    ListBoxItem9: TListBoxItem;
+    c100: TListBoxItem;
+    c106: TListBoxItem;
+    c110: TListBoxItem;
+    c111: TListBoxItem;
+    c112: TListBoxItem;
+    c130: TListBoxItem;
+    c196: TListBoxItem;
+    c206: TListBoxItem;
+    ektare: TListBoxItem;
+    kcastlet: TListBoxItem;
+    lpayne: TListBoxItem;
+    grader: TListBoxItem;
+    wmacevoy: TListBoxItem;
+    jddobbs: TListBoxItem;
     procedure getDirsClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnQuitClick(Sender: TObject);
     procedure btnRemoveClick(Sender: TObject);
@@ -188,12 +198,6 @@ begin
   application.Terminate;
 end;
 
-procedure TForm2.FormCreate(Sender: TObject);
-begin
-  end_room.Enabled := false;
-end;
-
-
 procedure TForm2.FormShow(Sender: TObject);
 begin
    Campus := JECOMap.Campus;
@@ -250,12 +254,11 @@ if (coursesuffix.ItemIndex >= 0) then
     end;
 if (sec.ItemIndex >= 0) then
 begin
-   courseab := courseab + ' Sec. ' + sec.Items[sec.itemindex];
+   courseab := courseab + '-' + sec.Items[sec.itemindex];
 end;
 
   scheduleGrid.Cells[0, scheduleGrid.Selected] := courseab;
-  scheduleGrid.Cells[1, scheduleGrid.Selected] := 'WS-118';
-  scheduleGrid.Cells[2, scheduleGrid.Selected] := 'Dr. Lori Payne';
+  scheduleGrid.Cells[1, scheduleGrid.Selected] := professorList.Items[professorList.ItemIndex];
   scheduleGrid.Selected := scheduleGrid.Selected + 1;
 end;
 

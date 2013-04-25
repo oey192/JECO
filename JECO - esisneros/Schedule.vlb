@@ -1,10 +1,4 @@
-﻿[colLocation]
-Coordinates=639,386,72,33
-
-[ListBoxItem23]
-Coordinates=639,441,84,33
-
-[PP_P5]
+﻿[PP_P5]
 Coordinates=0,321,46,33
 
 [JECO_Logo]
@@ -12,9 +6,6 @@ Coordinates=639,232,73,51
 
 [Label3]
 Coordinates=42,121,46,51
-
-[ListBoxItem21]
-Coordinates=540,497,84,33
 
 [scheduleGrid]
 Coordinates=259,155,80,51
@@ -28,17 +19,8 @@ Coordinates=422,497,47,33
 [btnQuit]
 Coordinates=57,357,50,51
 
-[end_room]
-Coordinates=353,357,84,87
-
-[ListBoxItem24]
-Coordinates=323,497,84,33
-
 [label_professor]
 Coordinates=41,261,91,51
-
-[Destination]
-Coordinates=639,155,70,51
 
 [btnViewSchMap]
 Coordinates=150,261,93,51
@@ -58,14 +40,8 @@ Coordinates=639,1,117,51
 [professorList]
 Coordinates=0,0,84,87
 
-[ListBoxItem20]
-Coordinates=155,497,84,33
-
 [CMU_Logo]
 Coordinates=116,357,68,51
-
-[ListBoxItem22]
-Coordinates=56,497,84,33
 
 [title_CMUScheduleAndProfile]
 Coordinates=240,1,159,51
@@ -98,12 +74,6 @@ Coordinates=323,261,119,51
 [courseSuffix]
 Coordinates=101,121,84,87
 
-[ListBoxItem19]
-Coordinates=811,111,84,33
-
-[end_building]
-Coordinates=462,199,84,87
-
 [Copyright_footer]
 Coordinates=639,78,97,51
 
@@ -116,23 +86,14 @@ Coordinates=811,166,77,33
 [btnRemove]
 Coordinates=264,357,70,51
 
-[ListBoxItem25]
-Coordinates=811,221,84,33
-
 [ListBoxItem1]
 Coordinates=811,331,79,33
 
 []
-Coordinates=0,449,65,33
+Coordinates=639,386,72,33
 
 [CSCI_Test]
 Coordinates=794,273,65,33
-
-[ListBoxItem2]
-Coordinates=0,213,79,33
-
-[ListBoxItem3]
-Coordinates=0,449,79,33
 
 [Label1]
 Coordinates=794,383,46,51
@@ -148,4 +109,10 @@ Coordinates=794,557,79,33
 
 [Sec]
 Coordinates=480,390,84,87
+
+[c241]
+Coordinates=0,213,79,33
+
+[c250]
+Coordinates=0,449,79,33
 

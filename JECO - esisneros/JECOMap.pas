@@ -12,7 +12,6 @@ type
     user_menu_options: TComboBox;
     get_directions: TListBoxItem;
     find_professor: TListBoxItem;
-    find_building: TListBoxItem;
     btnQuit: TButton;
     btnViewSchMap: TButton;
     btnEditSchedule: TButton;

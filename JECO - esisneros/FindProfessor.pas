@@ -56,7 +56,9 @@ type
     building_viewer: TImageViewer;
     reset_button: TButton;
     return_button: TButton;
-    Label1: TLabel;
+    Copyright: TLabel;
+    legend: TImage;
+    legend_animation: TFloatAnimation;
     procedure FormShow(Sender: TObject);
     procedure campus_optionChange(Sender: TObject);
     procedure department_comboBoxChange(Sender: TObject);
@@ -66,6 +68,7 @@ type
     procedure building_viewerDblClick(Sender: TObject);
     procedure reset_buttonClick(Sender: TObject);
     procedure return_buttonClick(Sender: TObject);
+    procedure map_viewerResize(Sender: TObject);
   private
     { Private declarations }
   public
@@ -252,51 +255,48 @@ end;
 
 procedure Tfind_professor_form.findProfessor_buttonClick(Sender: TObject);
 var
-  officeRoom : TImage;
-  roomGlow : TGlowEffect;
+     officeRoom : TImage;
+       roomGlow : TInnerGlowEffect;
   glowAnimation : TFloatAnimation;
+     HScrollBar : integer;
+     VScrollBar : integer;
 begin
-    // DEBUG: Show's coordinates of top left corner of TImageViewer 
+    // DEBUG: Show's coordinates of top left corner of TImageViewer
     // ShowMessage('H: ' + floattostr(map_viewer.HScrollBar.Value) + 'V: ' + floattostr(map_viewer.VScrollBar.Value));
+
+    // BEGIN: Wubben Science
     if building_name.Text = 'Wubben Science Building' then
       begin
-        map_viewer.HScrollBar.Value := 27;
-        map_viewer.VScrollBar.Value := 432;
-        wubbenScience_glow.Enabled := true;
-        building_viewer.Height := 500;
-        building_viewer.Width := 600;
-        building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/1st_floor.png');
-
-
         officeRoom := TImage.Create(building_viewer);
         officeRoom.Parent := building_viewer;
         officeRoom.Bitmap.LoadFromFile('maps/action_findProfessor/WS/' + office_name.Text + '.png');
 
-        roomGlow := TGlowEffect.Create(officeRoom);
-        roomGlow.Parent := officeRoom;
-        roomGlow.Enabled := true;
-        roomGlow.GlowColor := $FF00008B; // Color - Dark Blue
-        roomGlow.Softness := 0.75;
+        map_viewer.HScrollBar.Value := 27;
+        map_viewer.VScrollBar.Value := 432;
+        wubbenScience_glow.Enabled := true;
+        // Office_Name Format =  W  S  -  X  X  X  X
+        //                      [1][2][3][4][5][6][7]
+        if office_name.Text[4] = '1' then
+        begin
+         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/1st_floor.png');
+        end
+        else if office_name.Text[4] = '2' then
+        begin
+         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/3rd_floor.png');
+        end
+        else if office_name.Text[4] = '3' then
+        begin
+          building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/4th_floor.png');
+        end;
 
-        glowAnimation := TFloatAnimation.Create(roomGlow);
-        glowAnimation.Parent := roomGlow;
-        glowAnimation.AutoReverse := true;
-        glowAnimation.Duration := 0.7;
-        glowAnimation.Loop := true;
-        glowAnimation.PropertyName := 'Opacity';
-        glowAnimation.StartValue := 1;
-        glowAnimation.StopValue := 0;
-        glowAnimation.Enabled := true;
-        
         if office_name.Text = 'WS-134K' then
         begin
           officeRoom.Height := 65;
           officeRoom.Width := 85;
           officeRoom.Position.X := 1242;
           officeRoom.Position.Y := 664;
-          building_viewer.HScrollBar.Value := 1003;
-          building_viewer.VScrollBar.Value := 437;
-          
+          HScrollBar := 1003;
+          VScrollBar := 437;
         end
         else if office_name.Text = 'WS-119H' then
           begin
@@ -304,8 +304,8 @@ begin
           officeRoom.Width := 66;
           officeRoom.Position.X := 1153;
           officeRoom.Position.Y := 918;
-          building_viewer.HScrollBar.Value := 903;
-          building_viewer.VScrollBar.Value := 636;
+          HScrollBar := 903;
+          VScrollBar := 636;
           end
         else if office_name.Text = 'WS-136A' then
           begin
@@ -313,8 +313,8 @@ begin
           officeRoom.Width := 61;
           officeRoom.Position.X := 986;
           officeRoom.Position.Y := 796;
-          building_viewer.HScrollBar.Value := 722;
-          building_viewer.VScrollBar.Value := 763;
+          HScrollBar := 722;
+          VScrollBar := 763;
           end
         else if office_name.Text = 'WS-119J' then
           begin
@@ -322,8 +322,8 @@ begin
           officeRoom.Width := 58;
           officeRoom.Position.X := 1211;
           officeRoom.Position.Y := 982;
-          building_viewer.HScrollBar.Value := 955;
-          building_viewer.VScrollBar.Value := 637;
+          HScrollBar := 955;
+          VScrollBar := 637;
           end
         else if office_name.Text = 'WS-119F' then
           begin
@@ -331,8 +331,8 @@ begin
           officeRoom.Width := 57;
           officeRoom.Position.X := 1098;
           officeRoom.Position.Y := 981;
-          building_viewer.HScrollBar.Value := 844;
-          building_viewer.VScrollBar.Value := 637;
+          HScrollBar := 844;
+          VScrollBar := 637;
           end
         else if office_name.Text = 'WS-119G' then
           begin
@@ -340,8 +340,8 @@ begin
           officeRoom.Width := 58;
           officeRoom.Position.X := 1155;
           officeRoom.Position.Y := 981;
-          building_viewer.HScrollBar.Value := 844;
-          building_viewer.VScrollBar.Value := 637;
+          HScrollBar := 844;
+          VScrollBar := 637;
           end
         else if office_name.Text = 'WS-119B' then
           begin
@@ -349,10 +349,229 @@ begin
           officeRoom.Width := 57;
           officeRoom.Position.X := 930;
           officeRoom.Position.Y := 981;
-          building_viewer.HScrollBar.Value := 672;
-          building_viewer.VScrollBar.Value := 637;
+          HScrollBar := 672;
+          VScrollBar := 637;
+          end
+        else if office_name.Text = 'WS-136B' then
+          begin
+          officeRoom.Height := 59;
+          officeRoom.Width := 60;
+          officeRoom.Position.X := 929;
+          officeRoom.Position.Y := 798;
+          HScrollBar := 679;
+          VScrollBar := 567;
+          end
+        else if office_name.Text = 'WS-119D' then
+          begin
+          officeRoom.Height := 44;
+          officeRoom.Width := 63;
+          officeRoom.Position.X := 1006;
+          officeRoom.Position.Y := 919;
+          HScrollBar := 746;
+          VScrollBar := 633;
+          end
+        else if office_name.Text = 'WS-134A' then
+          begin
+          officeRoom.Height := 42;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 1451;
+          officeRoom.Position.Y := 817;
+          HScrollBar := 1089;
+          VScrollBar := 633;
+          end
+        else if office_name.Text = 'WS-136E' then
+          begin
+          officeRoom.Height := 44;
+          officeRoom.Width := 71;
+          officeRoom.Position.X := 975;
+          officeRoom.Position.Y := 668;
+          HScrollBar := 716;
+          VScrollBar := 425;
+          end
+        else if office_name.Text = 'WS-134H' then
+          begin
+          officeRoom.Height := 47;
+          officeRoom.Width := 97;
+          officeRoom.Position.X := 1366;
+          officeRoom.Position.Y := 642;
+          HScrollBar := 1089;
+          VScrollBar := 444;
+          end
+        else if office_name.Text = 'WS-119C' then
+          begin
+          officeRoom.Height := 49;
+          officeRoom.Width := 55;
+          officeRoom.Position.X := 987;
+          officeRoom.Position.Y := 982;
+          HScrollBar := 719;
+          VScrollBar := 631;
+          end
+        else if office_name.Text = 'WS-134E' then
+          begin
+          officeRoom.Height := 38;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 1451;
+          officeRoom.Position.Y := 740;
+          HScrollBar := 1089;
+          VScrollBar := 526;
+          end
+        else if office_name.Text = 'WS-134L' then
+          begin
+          officeRoom.Height := 62;
+          officeRoom.Width := 50;
+          officeRoom.Position.X := 1193;
+          officeRoom.Position.Y := 666;
+          HScrollBar := 929;
+          VScrollBar := 481;
+          end
+        else if office_name.Text = 'WS-119A' then
+          begin
+          officeRoom.Height := 63;
+          officeRoom.Width := 53;
+          officeRoom.Position.X := 931;
+          officeRoom.Position.Y := 919;
+          HScrollBar := 648;
+          VScrollBar := 633;
+          end
+        else if office_name.Text = 'WS-134M' then
+          begin
+          officeRoom.Height := 62;
+          officeRoom.Width := 47;
+          officeRoom.Position.X := 1146;
+          officeRoom.Position.Y := 666;
+          HScrollBar := 876;
+          VScrollBar := 455;
+          end
+        else if office_name.Text = 'WS-134A' then
+          begin
+          officeRoom.Height := 40;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 1451;
+          officeRoom.Position.Y := 818;
+          HScrollBar := 1089;
+          VScrollBar := 627;
+          end
+        else if office_name.Text = 'WS-134B' then
+          begin
+          officeRoom.Height := 61;
+          officeRoom.Width := 47;
+          officeRoom.Position.X := 1384;
+          officeRoom.Position.Y := 798;
+          HScrollBar := 1089;
+          VScrollBar := 627;
+          end
+        else if office_name.Text = 'WS-134G' then
+          begin
+          officeRoom.Height := 58;
+          officeRoom.Width := 60;
+          officeRoom.Position.X := 1463;
+          officeRoom.Position.Y := 642;
+          HScrollBar := 1089;
+          VScrollBar := 434;
+          end
+        else if office_name.Text = 'WS-119K' then
+          begin
+          officeRoom.Height := 64;
+          officeRoom.Width := 51;
+          officeRoom.Position.X := 1218;
+          officeRoom.Position.Y := 919;
+          HScrollBar := 954;
+          VScrollBar := 633;
+          end
+        else if office_name.Text = 'WS-136D' then
+          begin
+          officeRoom.Height := 65;
+          officeRoom.Width := 46;
+          officeRoom.Position.X := 929;
+          officeRoom.Position.Y := 669;
+          HScrollBar := 663;
+          VScrollBar := 462;
+          end
+        else if office_name.Text = 'WS-134N' then
+          begin
+          officeRoom.Height := 62;
+          officeRoom.Width := 55;
+          officeRoom.Position.X := 1091;
+          officeRoom.Position.Y := 666;
+          HScrollBar := 825;
+          VScrollBar := 460;
+          end
+        else if office_name.Text = 'WS-134F' then
+          begin
+          officeRoom.Height := 40;
+          officeRoom.Width := 70;
+          officeRoom.Position.X := 1452;
+          officeRoom.Position.Y := 700;
+          HScrollBar := 1089;
+          VScrollBar := 467;
+          end
+        else if office_name.Text = 'WS-134J' then
+          begin
+          officeRoom.Height := 64;
+          officeRoom.Width := 52;
+          officeRoom.Position.X := 1332;
+          officeRoom.Position.Y := 738;
+          HScrollBar := 1067;
+          VScrollBar := 516;
+          end
+        else if office_name.Text = 'WS-134C' then
+          begin
+          officeRoom.Height := 40;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 1451;
+          officeRoom.Position.Y := 778;
+          HScrollBar := 1089;
+          VScrollBar := 564;
+          end
+        else if office_name.Text = 'WS-136C' then
+          begin
+          officeRoom.Height := 64;
+          officeRoom.Width := 47;
+          officeRoom.Position.X := 929;
+          officeRoom.Position.Y := 734;
+          HScrollBar := 654;
+          VScrollBar := 523;
+          end
+        else if office_name.Text = 'WS-134D' then
+          begin
+          officeRoom.Height := 61;
+          officeRoom.Width := 47;
+          officeRoom.Position.X := 1384;
+          officeRoom.Position.Y := 737;
+          HScrollBar := 1089;
+          VScrollBar := 535;
+          end
+        else if office_name.Text = 'WS-119E' then
+          begin
+          officeRoom.Height := 49;
+          officeRoom.Width := 56;
+          officeRoom.Position.X := 1042;
+          officeRoom.Position.Y := 982;
+          HScrollBar := 765;
+          VScrollBar := 633;
           end;
-       end;
+    end;
+    // END: Wubben Science
+
+       building_viewer.HScrollBar.Value := HScrollBar;
+       building_viewer.VScrollBar.Value := VScrollBar;
+
+       // set Room Effects
+       roomGlow := TInnerGlowEffect.Create(officeRoom);
+       roomGlow.Parent := officeRoom;
+       roomGlow.Enabled := true;
+       roomGlow.GlowColor := $FF00008B; // Color - Dark Blue
+       roomGlow.Softness := 0.75;
+
+       glowAnimation := TFloatAnimation.Create(roomGlow);
+       glowAnimation.Parent := roomGlow;
+       glowAnimation.AutoReverse := true;
+       glowAnimation.Duration := 0.7;
+       glowAnimation.Loop := true;
+       glowAnimation.PropertyName := 'Opacity';
+       glowAnimation.StartValue := 1;
+       glowAnimation.StopValue := 0;
+       glowAnimation.Enabled := true;
   end;
 
 procedure Tfind_professor_form.FormShow(Sender: TObject);
@@ -383,7 +602,19 @@ begin
     phone_name.Text := '';
     avatar.Bitmap.LoadFromFile('faculty/defaultAvatar.png');
     map_viewer.Visible := true;
+    building_viewer.Visible := false;
     wubbenScience_glow.Enabled := false;
+    legend.Bitmap.LoadFromFile('maps/action_findProfessor/legend.png');
+    legend.Height := 183;
+    legend.Width := 262;
+end;
+
+procedure Tfind_professor_form.map_viewerResize(Sender: TObject);
+begin
+  if map_viewer.Width > 648 then
+  begin
+    map_viewer.Width := 648;
+  end;
 end;
 
 procedure Tfind_professor_form.professor_comboBoxChange(Sender: TObject);
@@ -448,7 +679,6 @@ procedure Tfind_professor_form.reset_buttonClick(Sender: TObject);
 begin
   find_professor_form.Hide();
   find_professor_form.Show();
-  showMessage('Reset Not Fully Implemented - building_viewer not set to reset');
 end;
 
 procedure Tfind_professor_form.return_buttonClick(Sender: TObject);
@@ -460,6 +690,9 @@ procedure Tfind_professor_form.wubbenScience_buildingClick(Sender: TObject);
 begin
     map_viewer.Visible := false;
     building_viewer.Visible := true;
+    legend.Bitmap.LoadFromFile('maps/action_findProfessor/building_legend.png');
+    legend.Height := 272;
+    legend.Width := 206;
 end;
 
 end.

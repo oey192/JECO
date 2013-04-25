@@ -38,6 +38,7 @@ type
     Image6: TImage;
     Label1: TLabel;
     Nextbutton: TButton;
+    Label2: TLabel;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
@@ -261,7 +262,39 @@ for j := 1 to index2 - 2 do
               begin
                 Line4.Position.X := 461;
                 Line4.Width := 308;
+              end
+              else if startNum = 52 then
+              begin
+                Line4.Position.X := 603;
+                Line4.Width := 166;
+              end
+              else if startNum = 50 then
+              begin
+                Line4.Position.X := 635;
+                Line4.Width := 134;
+              end
+              else if startNum = 49 then
+              begin
+                Line4.Position.X := 592;
+                Line4.Width := 177;
+              end
+              else if startNum = 48 then
+              begin
+                Line4.Position.X := 708;
+                Line4.Width := 61;
+              end
+              else if startNum = 47 then
+              begin
+                Line4.Visible := false;
+                Image5.Visible := false;
+              end
+              else if startNum = 46 then
+              begin
+                Line4.Position.X := 728;
+                Line4.Width := 41;
               end;
+
+
 
            end
            else if startNum > 35 then
@@ -280,6 +313,14 @@ for j := 1 to index2 - 2 do
               Image4.RotationAngle := 180;
               Image4.Visible := true;
 
+              if startNum = 44 then
+                Line3.Position.Y := 296
+              else if startNum = 43 then
+                Line3.Position.Y := 242
+              else if startNum = 41 then
+                Line3.Position.Y := 283;
+
+              Line3.Height := 640 - Line3.Position.Y;
            end
            else if startNum = 34 then
            begin
@@ -291,7 +332,43 @@ for j := 1 to index2 - 2 do
            end
            else
            begin
+              Image3.Position.X := 975;
+              Image3.Position.Y := 631;
+              Image3.RotationAngle := 90;
+              Image3.Visible := true;
+              Line1.Visible := true;
 
+              if startNum = 6 then
+                Line1.Position.X := 215
+              else if startNum = 9 then
+                Line1.Position.X := 253
+              else if startNum = 10 then
+                Line1.Position.X := 294
+              else if startNum = 11 then
+                Line1.Position.X := 357
+              else if startNum = 12 then
+                Line1.Position.X := 378
+              else if startNum = 13 then
+                Line1.Position.X := 376
+              else if startNum = 14 then
+                Line1.Position.X := 397
+              else if startNum = 15 then
+                Line1.Position.X := 558
+              else if startNum = 16 then
+                Line1.Position.X := 520
+              else if startNum = 17 then
+                Line1.Position.X := 580
+              else if startNum = 18 then
+                Line1.Position.X := 518
+              else if startNum = 19 then
+                Line1.Position.X := 824
+              else if startNum = 20 then
+                Line1.Position.X := 658
+              else if startNum = 22 then
+                Line1.Position.X := 658;
+
+
+              Line1.Width := 982 - Line1.Position.X;
            end;
        end;
     end;

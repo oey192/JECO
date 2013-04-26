@@ -59,6 +59,12 @@ type
     Copyright: TLabel;
     legend: TImage;
     legend_animation: TFloatAnimation;
+    lowellHeinyHall_building: TImage;
+    lowellHeinyHall_glow: TGlowEffect;
+    FloatAnimation2: TFloatAnimation;
+    officeRoom: TImage;
+    glowAnimation: TFloatAnimation;
+    roomGlow: TInnerGlowEffect;
     procedure FormShow(Sender: TObject);
     procedure campus_optionChange(Sender: TObject);
     procedure department_comboBoxChange(Sender: TObject);
@@ -69,6 +75,9 @@ type
     procedure reset_buttonClick(Sender: TObject);
     procedure return_buttonClick(Sender: TObject);
     procedure map_viewerResize(Sender: TObject);
+    procedure building_viewerResize(Sender: TObject);
+    procedure building_viewerPaint(Sender: TObject; Canvas: TCanvas;
+      const ARect: TRectF);
   private
     { Private declarations }
   public
@@ -147,6 +156,23 @@ procedure Tfind_professor_form.building_viewerDblClick(Sender: TObject);
 begin
  // DEBUG: Show's coordinates of top left corner of TImageViewer 
      ShowMessage('H: ' + floattostr(building_viewer.HScrollBar.Value) + 'V: ' + floattostr(building_viewer.VScrollBar.Value));
+end;
+
+procedure Tfind_professor_form.building_viewerPaint(Sender: TObject;
+  Canvas: TCanvas; const ARect: TRectF);
+begin
+ if building_viewer.Width > building_viewer.Bitmap.Width then
+  begin
+    building_viewer.Width := building_viewer.Bitmap.Width ;
+  end;
+end;
+
+procedure Tfind_professor_form.building_viewerResize(Sender: TObject);
+begin
+ if building_viewer.Width > building_viewer.Bitmap.Width then
+  begin
+    building_viewer.Width := building_viewer.Bitmap.Width ;
+  end;
 end;
 
 procedure Tfind_professor_form.campus_optionChange(Sender: TObject);
@@ -255,20 +281,173 @@ end;
 
 procedure Tfind_professor_form.findProfessor_buttonClick(Sender: TObject);
 var
-     officeRoom : TImage;
-       roomGlow : TInnerGlowEffect;
-  glowAnimation : TFloatAnimation;
+     //officeRoom : TImage;
+      // roomGlow : TInnerGlowEffect;
+  //glowAnimation : TFloatAnimation;
      HScrollBar : integer;
      VScrollBar : integer;
 begin
     // DEBUG: Show's coordinates of top left corner of TImageViewer
     // ShowMessage('H: ' + floattostr(map_viewer.HScrollBar.Value) + 'V: ' + floattostr(map_viewer.VScrollBar.Value));
 
+    // BEGIN: Lowell Heiny Hall
+        if building_name.Text = 'Lowell Heiny Hall' then
+      begin
+        //officeRoom := TImage.Create(building_viewer);
+        //officeRoom.Parent := building_viewer;
+        officeRoom.Bitmap.LoadFromFile('maps/action_findProfessor/LHH/' + office_name.Text + '.png');
+
+        map_viewer.HScrollBar.Value := 62;
+        map_viewer.VScrollBar.Value := 371;
+        lowellHeinyHall_glow.Enabled := true;
+
+        // Office_Name Format =  L  H  H  -  X  X  X  X
+        //                      [1][2][3][4][5][6][7][8]
+        if office_name.Text[5] = '1' then
+        begin
+         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/LHH/1st_floor.png');
+        end
+        else if office_name.Text[5] = '2' then
+        begin
+         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/LHH/2nd_floor.png');
+        end
+        else if office_name.Text[5] = '3' then
+        begin
+          building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/LHH/3rd_floor.png');
+        end
+        else if office_name.Text[5] = '4' then
+        begin
+          building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/LHH/4th_floor.png');
+        end;
+
+
+        if office_name.Text = 'LHH-439' then
+        begin
+          officeRoom.Height := 104;
+          officeRoom.Width := 71;
+          officeRoom.Position.X := 683;
+          officeRoom.Position.Y := 83;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-456' then
+        begin
+          officeRoom.Height := 76;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 269;
+          officeRoom.Position.Y := 84;
+          HScrollBar := 13;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-451' then
+        begin
+          officeRoom.Height := 75;
+          officeRoom.Width := 109;
+          officeRoom.Position.X := 88;
+          officeRoom.Position.Y := 238;
+          HScrollBar := 13;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-437' then
+        begin
+          officeRoom.Height := 55;
+          officeRoom.Width := 90;
+          officeRoom.Position.X := 682;
+          officeRoom.Position.Y := 233;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-436' then
+        begin
+          officeRoom.Height := 50;
+          officeRoom.Width := 89;
+          officeRoom.Position.X := 683;
+          officeRoom.Position.Y := 185;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-440' then
+        begin
+          officeRoom.Height := 71;
+          officeRoom.Width := 79;
+          officeRoom.Position.X := 615;
+          officeRoom.Position.Y := 87;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-450' then
+        begin
+          officeRoom.Height := 55;
+          officeRoom.Width := 86;
+          officeRoom.Position.X := 256;
+          officeRoom.Position.Y := 230;
+          HScrollBar := 0;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-428' then
+        begin
+          officeRoom.Height := 76;
+          officeRoom.Width := 72;
+          officeRoom.Position.X := 800;
+          officeRoom.Position.Y := 476;
+          HScrollBar := 371;
+          VScrollBar := 198;
+        end
+        else if office_name.Text = 'LHH-431' then
+        begin
+          officeRoom.Height := 76;
+          officeRoom.Width := 70;
+          officeRoom.Position.X := 800;
+          officeRoom.Position.Y := 336;
+          HScrollBar := 371;
+          VScrollBar := 58;
+        end
+        else if office_name.Text = 'LHH-433' then
+        begin
+          officeRoom.Height := 73;
+          officeRoom.Width := 71;
+          officeRoom.Position.X := 800;
+          officeRoom.Position.Y := 200;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-453' then
+        begin
+          officeRoom.Height := 101;
+          officeRoom.Width := 74;
+          officeRoom.Position.X := 88;
+          officeRoom.Position.Y := 96;
+          HScrollBar := 0;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-454' then
+        begin
+          officeRoom.Height := 74;
+          officeRoom.Width := 101;
+          officeRoom.Position.X := 100;
+          officeRoom.Position.Y := 84;
+          HScrollBar := 0;
+          VScrollBar := 0;
+        end
+        else if office_name.Text = 'LHH-432' then
+        begin
+          officeRoom.Height := 71;
+          officeRoom.Width := 75;
+          officeRoom.Position.X := 797;
+          officeRoom.Position.Y := 267;
+          HScrollBar := 371;
+          VScrollBar := 0;
+        end;
+
+
+      end;
+    // END: Lowell Heiny Hall
+
     // BEGIN: Wubben Science
     if building_name.Text = 'Wubben Science Building' then
       begin
-        officeRoom := TImage.Create(building_viewer);
-        officeRoom.Parent := building_viewer;
+        //officeRoom := TImage.Create(building_viewer);
+        //officeRoom.Parent := building_viewer;
         officeRoom.Bitmap.LoadFromFile('maps/action_findProfessor/WS/' + office_name.Text + '.png');
 
         map_viewer.HScrollBar.Value := 27;
@@ -282,11 +461,11 @@ begin
         end
         else if office_name.Text[4] = '2' then
         begin
-         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/3rd_floor.png');
+         building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/2nd_floor.png');
         end
         else if office_name.Text[4] = '3' then
         begin
-          building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/4th_floor.png');
+          building_viewer.Bitmap.LoadFromFile('maps/action_findProfessor/WS/3rd_floor.png');
         end;
 
         if office_name.Text = 'WS-134K' then
@@ -557,21 +736,21 @@ begin
        building_viewer.VScrollBar.Value := VScrollBar;
 
        // set Room Effects
-       roomGlow := TInnerGlowEffect.Create(officeRoom);
-       roomGlow.Parent := officeRoom;
-       roomGlow.Enabled := true;
-       roomGlow.GlowColor := $FF00008B; // Color - Dark Blue
-       roomGlow.Softness := 0.75;
+       //roomGlow := TInnerGlowEffect.Create(officeRoom);
+       //roomGlow.Parent := officeRoom;
+       //roomGlow.Enabled := true;
+       //roomGlow.GlowColor := $FF00008B; // Color - Dark Blue
+       //roomGlow.Softness := 0.75;
 
-       glowAnimation := TFloatAnimation.Create(roomGlow);
-       glowAnimation.Parent := roomGlow;
-       glowAnimation.AutoReverse := true;
-       glowAnimation.Duration := 0.7;
-       glowAnimation.Loop := true;
-       glowAnimation.PropertyName := 'Opacity';
-       glowAnimation.StartValue := 1;
-       glowAnimation.StopValue := 0;
-       glowAnimation.Enabled := true;
+       //glowAnimation := TFloatAnimation.Create(roomGlow);
+       //glowAnimation.Parent := roomGlow;
+       //glowAnimation.AutoReverse := true;
+       //glowAnimation.Duration := 0.7;
+       //glowAnimation.Loop := true;
+       //glowAnimation.PropertyName := 'Opacity';
+       //glowAnimation.StartValue := 1;
+       //glowAnimation.StopValue := 0;
+       //glowAnimation.Enabled := true;
   end;
 
 procedure Tfind_professor_form.FormShow(Sender: TObject);
@@ -604,6 +783,7 @@ begin
     map_viewer.Visible := true;
     building_viewer.Visible := false;
     wubbenScience_glow.Enabled := false;
+    lowellHeinyHall_glow.Enabled := false;
     legend.Bitmap.LoadFromFile('maps/action_findProfessor/legend.png');
     legend.Height := 183;
     legend.Width := 262;

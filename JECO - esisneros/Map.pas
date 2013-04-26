@@ -5,19 +5,26 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
-  FMX.Layouts, FMX.ExtCtrls;
+  FMX.Layouts, FMX.ExtCtrls, FMX.Ani;
 
 type
   TMapForm = class(TForm)
-    TrackBar1: TTrackBar;
+    zoomBar: TTrackBar;
     ArcDial1: TArcDial;
-    Image1: TImage;
-    Image2: TImage;
-    ImageViewer1: TImageViewer;
+    zoom_plus: TImage;
+    zoom_minus: TImage;
+    mapViewer: TImageViewer;
     Blero: TStyleBook;
     Label1: TLabel;
+    legend: TImage;
+    legend_animation: TFloatAnimation;
+    BitmapAnimation1: TBitmapAnimation;
+    BitmapAnimation2: TBitmapAnimation;
     procedure drawLine(x1, y1, x2, y2 : Integer);
     procedure FormCreate(Sender: TObject);
+    procedure zoom_plusClick(Sender: TObject);
+    procedure zoom_minusClick(Sender: TObject);
+    procedure zoomBarChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -56,6 +63,21 @@ end;
 procedure TMapForm.FormCreate(Sender: TObject);
 begin
   drawLine(0, 0, 40, 60);
+end;
+
+procedure TMapForm.zoomBarChange(Sender: TObject);
+begin
+  mapViewer.BitmapScale := (-zoomBar.Value);
+end;
+
+procedure TMapForm.zoom_minusClick(Sender: TObject);
+begin
+ zoomBar.Value := zoomBar.Value + 2;
+end;
+
+procedure TMapForm.zoom_plusClick(Sender: TObject);
+begin
+ zoomBar.Value := zoomBar.Value - 2;
 end;
 
 end.

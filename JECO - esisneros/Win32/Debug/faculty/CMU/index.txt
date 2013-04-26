@@ -1,4 +1,6 @@
 Computer Science
 compSci
+English
+english
 Mathematics && Statistics
 mathStat

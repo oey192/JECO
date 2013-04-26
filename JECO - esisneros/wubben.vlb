@@ -2,7 +2,7 @@
 Coordinates=44,159,46,33
 
 [start_label]
-Coordinates=251,1,65,51
+Coordinates=367,78,74,58
 
 [Line40]
 Coordinates=354,1,46,33
@@ -11,10 +11,10 @@ Coordinates=354,1,46,33
 Coordinates=354,53,46,33
 
 [Return]
-Coordinates=34,70,47,51
+Coordinates=73,146,53,58
 
 [Panel1]
-Coordinates=354,105,47,33
+Coordinates=66,282,54,36
 
 [Line38]
 Coordinates=354,157,46,33
@@ -23,19 +23,19 @@ Coordinates=354,157,46,33
 Coordinates=354,209,46,33
 
 [start_title]
-Coordinates=182,159,60,51
+Coordinates=10,10,67,58
 
 [Line11]
-Coordinates=335,248,46,33
+Coordinates=335,248,53,36
 
 [Line10]
-Coordinates=286,248,46,33
+Coordinates=286,248,53,36
 
 [Line31]
 Coordinates=237,248,46,33
 
 [ImageViewer1]
-Coordinates=0,0,83,51
+Coordinates=136,146,96,58
 
 [Line15]
 Coordinates=188,248,46,33
@@ -44,13 +44,13 @@ Coordinates=188,248,46,33
 Coordinates=139,248,46,33
 
 [Line2]
-Coordinates=0,126,41,33
+Coordinates=466,282,46,36
 
 [end_label]
-Coordinates=251,141,61,51
+Coordinates=451,78,70,58
 
 [Line9]
-Coordinates=90,248,41,33
+Coordinates=90,248,46,36
 
 [Line28]
 Coordinates=41,248,46,33
@@ -59,7 +59,7 @@ Coordinates=41,248,46,33
 Coordinates=439,1,46,33
 
 [Line8]
-Coordinates=439,53,41,33
+Coordinates=186,282,46,36
 
 [Line43]
 Coordinates=439,105,46,33
@@ -68,7 +68,7 @@ Coordinates=439,105,46,33
 Coordinates=439,157,46,33
 
 [Line4]
-Coordinates=439,209,41,33
+Coordinates=242,282,46,36
 
 [Line16]
 Coordinates=439,261,46,33
@@ -80,22 +80,22 @@ Coordinates=439,313,46,33
 Coordinates=390,319,46,33
 
 [FindProfessor_Title]
-Coordinates=102,1,111,51
+Coordinates=392,10,126,58
 
 [Line19]
 Coordinates=341,319,46,33
 
 [Line7]
-Coordinates=292,319,41,33
+Coordinates=298,282,46,36
 
 [Line34]
 Coordinates=243,319,46,33
 
 [Line3]
-Coordinates=194,319,41,33
+Coordinates=354,282,46,36
 
 [Line1]
-Coordinates=145,319,41,33
+Coordinates=410,282,46,36
 
 [Line39]
 Coordinates=96,319,46,33
@@ -118,14 +118,11 @@ Coordinates=523,157,46,33
 [Line26]
 Coordinates=523,209,46,33
 
-[Line12]
-Coordinates=523,261,46,33
-
 [Line23]
 Coordinates=523,313,46,33
 
 [Line5]
-Coordinates=523,365,41,33
+Coordinates=130,282,46,36
 
 [Line24]
 Coordinates=474,390,46,33
@@ -143,14 +140,78 @@ Coordinates=327,390,46,33
 Coordinates=278,390,46,33
 
 [end_title]
-Coordinates=251,71,56,51
+Coordinates=319,10,63,58
 
 [Line37]
 Coordinates=229,390,46,33
 
 [Image1]
-Coordinates=83,70,49,51
+Coordinates=154,10,57,58
 
 [Line6]
-Coordinates=32,390,41,33
+Coordinates=10,282,46,36
+
+[nextButton2]
+Coordinates=274,78,83,58
+
+[detailLegend]
+Coordinates=221,10,88,58
+
+[Label2]
+Coordinates=144,78,53,58
+
+[Panel2]
+Coordinates=472,214,54,36
+
+[Image2]
+Coordinates=10,78,57,58
+
+[Image4]
+Coordinates=87,10,57,58
+
+[Image5]
+Coordinates=104,214,57,58
+
+[Image7]
+Coordinates=77,78,57,58
+
+[Image3]
+Coordinates=171,214,57,58
+
+[Image6]
+Coordinates=207,78,57,58
+
+[campusLegend]
+Coordinates=309,146,102,58
+
+[ImageViewer2]
+Coordinates=238,214,96,58
+Visible=True
+
+[Panel4]
+Coordinates=408,214,54,36
+
+[Nextbutton1]
+Coordinates=10,214,84,58
+
+[campusView]
+Coordinates=421,146,87,58
+
+[Image8]
+Coordinates=242,146,57,58
+
+[Panel3]
+Coordinates=344,214,54,36
+
+[]
+Coordinates=10,146,53,58
+
+[Image9]
+Coordinates=559,1,57,58
+
+[Image10]
+Coordinates=564,78,64,58
+
+[Image11]
+Coordinates=564,155,64,58
 

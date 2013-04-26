@@ -36,7 +36,6 @@ type
     Image4: TImage;
     Image5: TImage;
     Image6: TImage;
-    Label1: TLabel;
     Nextbutton1: TButton;
     Label2: TLabel;
     Panel2: TPanel;
@@ -51,20 +50,25 @@ type
     FloatAnimation1: TFloatAnimation;
     campusLegend: TImage;
     FloatAnimation2: TFloatAnimation;
+    Panel4: TPanel;
+    Line9: TLine;
+    Line10: TLine;
+    Line11: TLine;
+    Image9: TImage;
+    Image10: TImage;
+    Image11: TImage;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
     procedure ReturnClick(Sender: TObject);
     procedure ImageViewer1Resize(Sender: TObject);
-    procedure ImageViewer1DblClick(Sender: TObject);
-    procedure ImageViewer1MouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
     procedure campusViewResize(Sender: TObject);
-    procedure campusViewMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Single);
     procedure Nextbutton1Click(Sender: TObject);
-    procedure campusViewDblClick(Sender: TObject);
     procedure nextButton2Click(Sender: TObject);
+    procedure final;
+    procedure intermediate;
+    procedure Panel4Click(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,8 +101,12 @@ begin
   Line7.StrokeThickness := 5;
   Line8.Stroke.Color := TAlphaColorRec.Deepskyblue;
   Line8.StrokeThickness := 5;
-  //Line9.Stroke.Color := TAlphaColorRec.Deepskyblue;
-  //Line9.StrokeThickness := 5;
+  Line9.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line9.StrokeThickness := 5;
+  Line10.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line10.StrokeThickness := 5;
+  Line11.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line11.StrokeThickness := 5;
 
   campusView.Visible := false;
   imageviewer2.Visible := false;
@@ -110,16 +118,12 @@ begin
   setLineVisibility(false);
 end;
 
-procedure TwubbenScience.ImageViewer1DblClick(Sender: TObject);
+procedure TwubbenScience.Image2Click(Sender: TObject);
 begin
-  ShowMessage('H: ' + floattostr(imageviewer1.HScrollBar.Value) + ' V: ' + floattostr(imageviewer1.VScrollBar.Value));
+  intermediate;
 end;
 
-procedure TwubbenScience.ImageViewer1MouseMove(Sender: TObject;
-  Shift: TShiftState; X, Y: Single);
-begin
-  Label1.Text := 'X: ' + floattostr(x) + ' Y: ' + floatToStr(y);
-end;
+
 
 procedure TwubbenScience.ImageViewer1Resize(Sender: TObject);
 begin
@@ -133,18 +137,38 @@ end;
 
 procedure TwubbenScience.Nextbutton1Click(Sender: TObject);
 begin
+  intermediate;
+end;
+
+procedure TwubbenScience.intermediate;
+begin
   campusView.Visible := true;
+  campusView.BringToFront;
   imageviewer1.Visible := false;
   imageviewer2.Visible := false;
   detailLegend.Visible := false;
-  campusView.HScrollBar.Value := 61;
-  campusView.VScrollBar.Value := 500;
   nextbutton2.BringToFront;
   campusLegend.Visible := true;
   campusLegend.BringToFront;
+
+  campusView.HScrollBar.Value := 61;
+  campusView.VScrollBar.Value := 500;
+
+  wubbenscience.Caption := 'Main Campus';
 end;
 
 procedure TwubbenScience.nextButton2Click(Sender: TObject);
+begin
+   final;
+end;
+
+
+procedure TwubbenScience.Panel4Click(Sender: TObject);
+begin
+  final;
+end;
+
+procedure twubbenscience.final;
 begin
   //finishAllTheThings
 
@@ -159,26 +183,22 @@ begin
   nextbutton1.Visible := false;
   nextButton2.Visible := false;
 
+  line9.BringToFront;
+  line10.BringToFront;
+  line11.BringToFront;
+
+  wubbenscience.Caption := 'Houston Hall';
+
   if (finalDestNum = 13) or (finalDestNum = 12) or (finalDestNum = 14) then
   begin
 
   end
   else if finalDestNum = 7 then
   begin
-
+    imageviewer2.HScrollBar.Value := 342;
+    imageviewer2.VScrollBar.Value := 65;
   end;
 
-end;
-
-procedure TwubbenScience.campusViewDblClick(Sender: TObject);
-begin
-  ShowMessage('H: ' + floattostr(campusView.HScrollBar.Value) + ' V: ' + floattostr(campusView.VScrollBar.Value));
-end;
-
-procedure TwubbenScience.campusViewMouseMove(Sender: TObject;
-  Shift: TShiftState; X, Y: Single);
-begin
-  Label1.Text := 'Campus X: ' + floattostr(x) + ' Y: ' + floattostr(y);
 end;
 
 procedure TwubbenScience.campusViewResize(Sender: TObject);
@@ -226,6 +246,7 @@ Image6.Visible := false;
 nextbutton1.Visible := false;
 nextButton2.Visible := false;
 
+wubbenscience.Caption := 'Wubben Science Building';
 
 campusView.Visible := false;
 imageviewer2.Visible := false;

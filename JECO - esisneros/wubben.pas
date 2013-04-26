@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Rtti, System.Classes,
   System.Variants, FMX.Types, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.Objects,
-  JECOMap, FMX.Layouts, FMX.ExtCtrls, FMX.Effects, FMX.Filter.Effects;
+  JECOMap, FMX.Layouts, FMX.ExtCtrls, FMX.Effects, FMX.Filter.Effects, FMX.Ani;
 
 type
   TwubbenScience = class(TForm)
@@ -37,11 +37,20 @@ type
     Image5: TImage;
     Image6: TImage;
     Label1: TLabel;
-    Nextbutton: TButton;
+    Nextbutton1: TButton;
     Label2: TLabel;
     Panel2: TPanel;
     Panel3: TPanel;
     Image7: TImage;
+    nextButton2: TButton;
+    ImageViewer2: TImageViewer;
+    campusView: TImageViewer;
+    Line8: TLine;
+    Image8: TImage;
+    detailLegend: TImage;
+    FloatAnimation1: TFloatAnimation;
+    campusLegend: TImage;
+    FloatAnimation2: TFloatAnimation;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
@@ -50,6 +59,12 @@ type
     procedure ImageViewer1DblClick(Sender: TObject);
     procedure ImageViewer1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Single);
+    procedure campusViewResize(Sender: TObject);
+    procedure campusViewMouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Single);
+    procedure Nextbutton1Click(Sender: TObject);
+    procedure campusViewDblClick(Sender: TObject);
+    procedure nextButton2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,6 +73,7 @@ type
 
 var
   wubbenScience: TwubbenScience;
+  finalDestNum : Integer;
 
 implementation
 
@@ -79,6 +95,17 @@ begin
   Line6.StrokeThickness := 5;
   Line7.Stroke.Color := TAlphaColorRec.Deepskyblue;
   Line7.StrokeThickness := 5;
+  Line8.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line8.StrokeThickness := 5;
+  //Line9.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  //Line9.StrokeThickness := 5;
+
+  campusView.Visible := false;
+  imageviewer2.Visible := false;
+  imageviewer1.Visible := true;
+  imageviewer1.BringToFront;
+  detailLegend.BringToFront;
+  finalDestNum := 0;
 
   setLineVisibility(false);
 end;
@@ -101,6 +128,66 @@ imageviewer1.Width := 1222;
 
 if imageviewer1.Height > 815 then
 imageviewer1.Height := 815;
+
+end;
+
+procedure TwubbenScience.Nextbutton1Click(Sender: TObject);
+begin
+  campusView.Visible := true;
+  imageviewer1.Visible := false;
+  imageviewer2.Visible := false;
+  detailLegend.Visible := false;
+  campusView.HScrollBar.Value := 61;
+  campusView.VScrollBar.Value := 500;
+  nextbutton2.BringToFront;
+  campusLegend.Visible := true;
+  campusLegend.BringToFront;
+end;
+
+procedure TwubbenScience.nextButton2Click(Sender: TObject);
+begin
+  //finishAllTheThings
+
+  imageviewer1.Visible := false;
+  imageviewer2.Visible := true;
+  campusView.Visible := false;
+  imageviewer2.BringToFront;
+  campusLegend.Visible := false;
+  detailLegend.Visible := true;
+  detailLegend.BringToFront;
+
+  nextbutton1.Visible := false;
+  nextButton2.Visible := false;
+
+  if (finalDestNum = 13) or (finalDestNum = 12) or (finalDestNum = 14) then
+  begin
+
+  end
+  else if finalDestNum = 7 then
+  begin
+
+  end;
+
+end;
+
+procedure TwubbenScience.campusViewDblClick(Sender: TObject);
+begin
+  ShowMessage('H: ' + floattostr(campusView.HScrollBar.Value) + ' V: ' + floattostr(campusView.VScrollBar.Value));
+end;
+
+procedure TwubbenScience.campusViewMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Single);
+begin
+  Label1.Text := 'Campus X: ' + floattostr(x) + ' Y: ' + floattostr(y);
+end;
+
+procedure TwubbenScience.campusViewResize(Sender: TObject);
+begin
+  if campusView.Width > 660 then
+    campusView.Width := 660;
+
+  if campusView.Height > 1152 then
+    campusView.Height := 1152;
 
 end;
 
@@ -136,6 +223,17 @@ Image4.Visible := false;
 Image5.Visible := false;
 Image6.Visible := false;
 
+nextbutton1.Visible := false;
+nextButton2.Visible := false;
+
+
+campusView.Visible := false;
+imageviewer2.Visible := false;
+imageviewer1.Visible := true;
+imageviewer1.BringToFront;
+detailLegend.Visible := true;
+detailLegend.BringToFront;
+
 index1 := -1;
 index2 := -1;
 prefix1 := '';
@@ -168,13 +266,15 @@ for j := 1 to index2 - 2 do
   floor1Num := strToInt(start[index1]);
   floor2Num := strToInt(finish[index2]);
 
+  finalDestNum := finishNum;
+
   //showMessage('floor1Num: ' + inttostr(floor1Num) + ' pref1: ' + prefix1 + ' pref2: ' + prefix2);
 
   if prefix1 = 'WS' then
   begin
     if prefix2 = 'WS' then
     begin
-      showMessage('doing nothing yet');
+      //showMessage('doing nothing yet');
       //showWubben(strToInt(start[index]), startNum);
        //implement multiple floors
     end
@@ -185,6 +285,11 @@ for j := 1 to index2 - 2 do
        Image2.Position.X := 977;
        Image2.RotationAngle := 180;
        Image2.Visible := true;
+
+       nextButton1.Visible := true;
+       nextButton2.Visible := true;
+       nextButton1.BringToFront;
+
        if floor1Num = 1 then
        begin
            if startNum > 45 then
@@ -366,7 +471,11 @@ for j := 1 to index2 - 2 do
               else if startNum = 19 then
                 Line1.Position.X := 824
               else if startNum = 20 then
-                Line1.Position.X := 658
+              begin
+                Line1.Position.X := 658;
+                imageviewer1.HScrollBar.Value := 391;
+                imageviewer1.VScrollBar.Value := 264;
+              end
               else if startNum = 22 then
                 Line1.Position.X := 658;
 
@@ -381,6 +490,11 @@ for j := 1 to index2 - 2 do
   begin
     if prefix2 = 'WS' then
     begin
+
+      nextButton1.Visible := true;
+      nextButton2.Visible := true;
+      nextButton1.BringToFront;
+
 
     end
     else if prefix2 = 'H' then

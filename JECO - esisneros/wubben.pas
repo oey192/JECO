@@ -57,6 +57,19 @@ type
     Image9: TImage;
     Image10: TImage;
     Image11: TImage;
+    ImageViewer3: TImageViewer;
+    Line12: TLine;
+    Line13: TLine;
+    Line14: TLine;
+    nextButton3: TButton;
+    Line15: TLine;
+    Image12: TImage;
+    Image13: TImage;
+    Image14: TImage;
+    Image15: TImage;
+    Panel5: TPanel;
+    Image16: TImage;
+    Panel6: TPanel;
     procedure setLineVisibility(tf : boolean);
     procedure showPath(start, finish : String);
     procedure FormCreate(Sender: TObject);
@@ -67,8 +80,14 @@ type
     procedure nextButton2Click(Sender: TObject);
     procedure final;
     procedure intermediate;
-    procedure Panel4Click(Sender: TObject);
+    procedure reallyFinal;
+    procedure finalHelper(Sender: TObject);
+    procedure reallyFinalHelper(Sender: TObject);
     procedure Image2Click(Sender: TObject);
+    procedure nextButton3Click(Sender: TObject);
+    procedure ImageViewer2Resize(Sender: TObject);
+    procedure ImageViewer3Resize(Sender: TObject);
+    procedure Image16Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,6 +97,7 @@ type
 var
   wubbenScience: TwubbenScience;
   finalDestNum : Integer;
+  destBuilding : String;
 
 implementation
 
@@ -107,6 +127,14 @@ begin
   Line10.StrokeThickness := 5;
   Line11.Stroke.Color := TAlphaColorRec.Deepskyblue;
   Line11.StrokeThickness := 5;
+  Line12.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line12.StrokeThickness := 5;
+  Line13.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line13.StrokeThickness := 5;
+  Line14.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line14.StrokeThickness := 5;
+  Line15.Stroke.Color := TAlphaColorRec.Deepskyblue;
+  Line15.StrokeThickness := 5;
 
   campusView.Visible := false;
   imageviewer2.Visible := false;
@@ -116,6 +144,11 @@ begin
   finalDestNum := 0;
 
   setLineVisibility(false);
+end;
+
+procedure TwubbenScience.Image16Click(Sender: TObject);
+begin
+  intermediate;
 end;
 
 procedure TwubbenScience.Image2Click(Sender: TObject);
@@ -133,6 +166,22 @@ imageviewer1.Width := 1222;
 if imageviewer1.Height > 815 then
 imageviewer1.Height := 815;
 
+end;
+
+procedure TwubbenScience.ImageViewer2Resize(Sender: TObject);
+begin
+  if imageviewer2.Width > 966 then
+    imageviewer2.Width := 966;
+  if imageviewer2.Height > 660 then
+    imageviewer2.Height := 660;
+end;
+
+procedure TwubbenScience.ImageViewer3Resize(Sender: TObject);
+begin
+  if imageviewer3.Height > 815 then
+    imageviewer3.Height := 815;
+  if imageviewer3.Width > 1212 then
+    imageviewer3.Width := 1212;
 end;
 
 procedure TwubbenScience.Nextbutton1Click(Sender: TObject);
@@ -155,6 +204,22 @@ begin
   campusView.VScrollBar.Value := 500;
 
   wubbenscience.Caption := 'Main Campus';
+
+  if destBuilding = 'HH' then
+  begin
+    image8.Visible := true;
+    image15.Visible := false;
+    Panel4.OnClick := finalHelper;
+    Panel5.OnClick := nil;
+  end
+  else if destBuilding = 'WS' then
+  begin
+    image8.Visible := false;
+    image15.Visible := true;
+    Panel4.OnClick := nil;
+    Panel5.OnClick := finalHelper;
+  end;
+
 end;
 
 procedure TwubbenScience.nextButton2Click(Sender: TObject);
@@ -163,42 +228,158 @@ begin
 end;
 
 
-procedure TwubbenScience.Panel4Click(Sender: TObject);
+procedure TwubbenScience.nextButton3Click(Sender: TObject);
+begin
+  reallyFinal;
+end;
+
+procedure TwubbenScience.finalHelper(Sender: TObject);
 begin
   final;
 end;
 
+procedure TwubbenScience.reallyFinalHelper(Sender: TObject);
+begin
+  reallyFinal;
+end;
+
+
 procedure twubbenscience.final;
 begin
-  //finishAllTheThings
-
-  imageviewer1.Visible := false;
-  imageviewer2.Visible := true;
-  campusView.Visible := false;
-  imageviewer2.BringToFront;
   campusLegend.Visible := false;
   detailLegend.Visible := true;
-  detailLegend.BringToFront;
+  campusView.Visible := false;
 
   nextbutton1.Visible := false;
   nextButton2.Visible := false;
+  nextButton3.Visible := false;
 
-  line9.BringToFront;
-  line10.BringToFront;
-  line11.BringToFront;
-
-  wubbenscience.Caption := 'Houston Hall';
-
-  if (finalDestNum = 13) or (finalDestNum = 12) or (finalDestNum = 14) then
+  if destBuilding = 'HH' then
   begin
+    imageviewer1.Visible := false;
+    imageviewer2.Visible := true;
+    imageviewer3.Visible := false;
+    imageviewer2.BringToFront;
 
+    line9.BringToFront;
+    line10.BringToFront;
+    line11.BringToFront;
+    Image11.Visible := true;
+    Image10.RotationAngle := 90;
+    Image9.RotationAngle := 180;
+    Image16.Visible := false;
+
+    wubbenscience.Caption := 'Houston Hall';
+
+    if (finalDestNum = 13) or (finalDestNum = 12) or (finalDestNum = 14) then
+    begin
+
+    end
+    else if finalDestNum = 7 then
+    begin
+      imageviewer2.HScrollBar.Value := 342;
+      imageviewer2.VScrollBar.Value := 65;
+    end;
   end
-  else if finalDestNum = 7 then
+  else if destBuilding = 'WS' then
   begin
-    imageviewer2.HScrollBar.Value := 342;
-    imageviewer2.VScrollBar.Value := 65;
+    imageviewer1.Visible := true;
+    imageviewer2.Visible := false;
+    imageviewer3.Visible := false;
+
+    wubbenscience.Caption := 'Wubben Science Building';
+
+    imageviewer1.HScrollBar.Value := 500;
+    imageviewer1.VScrollBar.Value := 250;
+
+    line7.Visible := true;
+    Image2.Visible := false;
+
+    Image3.Position.X := 975;
+    Image3.Position.Y := 631;
+    Image3.RotationAngle := 270;
+    Image3.Visible := true;
+
+
+    if finalDestNum = 5 then
+    begin
+      Line1.Position.X := 294;
+      Line15.Visible := true;
+      image4.Position.X := 281;
+      image4.Position.Y := 628;
+      image4.RotationAngle := 0;
+      image4.Visible := true;
+
+      image5.Position.X := 278;
+      image5.Position.Y := 600;
+      image5.RotationAngle := 270;
+      image5.Visible := true;
+
+      nextButton3.Visible := true;
+      nextButton3.BringToFront;
+
+      Panel6.OnClick := reallyFinalHelper;
+
+    end
+    else if finalDestNum = 6 then
+      Line1.Position.X := 215
+    else if finalDestNum = 9 then
+      Line1.Position.X := 253
+    else if finalDestNum = 10 then
+      Line1.Position.X := 294
+    else if finalDestNum = 11 then
+      Line1.Position.X := 357
+    else if finalDestNum = 12 then
+      Line1.Position.X := 378
+    else if finalDestNum = 13 then
+      Line1.Position.X := 376
+    else if finalDestNum = 14 then
+      Line1.Position.X := 397
+    else if finalDestNum = 15 then
+      Line1.Position.X := 558
+    else if finalDestNum = 16 then
+      Line1.Position.X := 520
+    else if finalDestNum = 17 then
+      Line1.Position.X := 580
+    else if finalDestNum = 18 then
+      Line1.Position.X := 518
+    else if finalDestNum = 19 then
+      Line1.Position.X := 824
+    else if finalDestNum = 20 then
+    begin
+      Line1.Position.X := 658;
+    end
+    else if finalDestNum = 22 then
+      Line1.Position.X := 658;
+
+    Line1.Width := 984 - Line1.Position.X;
+      Line1.Visible := true;
+
+
   end;
 
+  detailLegend.BringToFront;
+
+end;
+
+procedure Twubbenscience.reallyFinal;
+begin
+    imageviewer1.Visible := false;
+    imageviewer2.Visible := false;
+    campusView.Visible := false;
+   imageviewer3.visible := true;
+
+   imageviewer3.BringToFront;
+
+   imageviewer3.HScrollBar.Value := 0;
+   imageviewer3.VScrollBar.Value := 400;
+
+   nextButton1.Visible := false;
+   nextbutton2.Visible := false;
+   nextbutton3.Visible := false;
+   campusLegend.Visible := false;
+   detailLegend.Visible := true;
+   detailLegend.BringToFront;
 end;
 
 procedure TwubbenScience.campusViewResize(Sender: TObject);
@@ -225,6 +406,7 @@ begin
   Line5.Visible := tf;
   Line6.Visible := tf;
   Line7.Visible := tf;
+  Line15.Visible := tf;
 end;
 
 procedure Twubbenscience.showPath(start, finish: String);
@@ -246,14 +428,14 @@ Image6.Visible := false;
 nextbutton1.Visible := false;
 nextButton2.Visible := false;
 
-wubbenscience.Caption := 'Wubben Science Building';
+panel6.OnClick := nil;
 
 campusView.Visible := false;
 imageviewer2.Visible := false;
+imageviewer3.Visible := false;
 imageviewer1.Visible := true;
 imageviewer1.BringToFront;
-detailLegend.Visible := true;
-detailLegend.BringToFront;
+
 
 index1 := -1;
 index2 := -1;
@@ -293,6 +475,11 @@ for j := 1 to index2 - 2 do
 
   if prefix1 = 'WS' then
   begin
+    wubbenscience.Caption := 'Wubben Science Building';
+    imageviewer1.Visible := true;
+    campusView.Visible := false;
+    imageviewer2.Visible := false;
+    imageviewer1.BringToFront;
     if prefix2 = 'WS' then
     begin
       //showMessage('doing nothing yet');
@@ -301,6 +488,7 @@ for j := 1 to index2 - 2 do
     end
     else if prefix2 = 'HH' then
     begin
+      destBuilding := 'HH';
        line7.Visible := true;
        Image2.Position.Y := 717;
        Image2.Position.X := 977;
@@ -337,7 +525,8 @@ for j := 1 to index2 - 2 do
 
               if startNum = 63 then
               begin
-                //placeholder for completeness - nothing acutally needs to be done in this if
+                imageviewer1.HScrollBar.Value := 0;
+                imageviewer1.VScrollBar.Value := 0
               end
               else if startNum = 62 then
               begin
@@ -349,6 +538,9 @@ for j := 1 to index2 - 2 do
                   Image6.Position.Y := 190;
                   Image6.RotationAngle := 0;
                   Image6.Visible := true;
+
+                  imageviewer1.HScrollBar.Value := 0;
+                  imageviewer1.VScrollBar.Value := 0
               end
               else if startNum = 61 then
               begin
@@ -360,6 +552,9 @@ for j := 1 to index2 - 2 do
                   Image6.Position.Y := 185;
                   Image6.RotationAngle := 180;
                   Image6.Visible := true;
+
+                  imageviewer1.HScrollBar.Value := 0;
+                  imageviewer1.VScrollBar.Value := 0
               end
               else if startNum = 60 then
               begin
@@ -371,6 +566,9 @@ for j := 1 to index2 - 2 do
                   Image6.Position.Y := 185;
                   Image6.RotationAngle := 180;
                   Image6.Visible := true;
+
+                  imageviewer1.HScrollBar.Value := 0;
+                  imageviewer1.VScrollBar.Value := 0
               end
               else if startNum = 57 then
               begin
@@ -509,21 +707,37 @@ for j := 1 to index2 - 2 do
   end
   else if prefix1 = 'HH' then
   begin
+    wubbenscience.Caption := 'Houston Hall';
+    imageviewer1.Visible := false;
+    campusView.Visible := false;
+    imageviewer2.Visible := true;
+    imageviewer2.BringToFront;
     if prefix2 = 'WS' then
     begin
-
+      destBuilding := 'WS';
       nextButton1.Visible := true;
       nextButton2.Visible := true;
+      nextButton3.Visible := true;
       nextButton1.BringToFront;
 
+      imageviewer2.HScrollBar.Value := 342;
+      imageviewer2.VScrollBar.Value := 65;
+
+      Image11.Visible := false;
+      Image10.RotationAngle := 270;
+      Image9.RotationAngle := 0;
+      Image16.Visible := true;
 
     end
-    else if prefix2 = 'H' then
+    else if prefix2 = 'HH' then
     begin
 
     end;
 
   end;
+
+  detailLegend.Visible := true;
+  detailLegend.BringToFront;
 
 end;
 

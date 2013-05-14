@@ -65,6 +65,8 @@ type
     officeRoom: TImage;
     glowAnimation: TFloatAnimation;
     roomGlow: TInnerGlowEffect;
+    hoverArrow: TImage;
+    hoverArrow_animation: TFloatAnimation;
     procedure FormShow(Sender: TObject);
     procedure campus_optionChange(Sender: TObject);
     procedure department_comboBoxChange(Sender: TObject);
@@ -300,7 +302,13 @@ begin
         map_viewer.HScrollBar.Value := 62;
         map_viewer.VScrollBar.Value := 371;
         lowellHeinyHall_glow.Enabled := true;
-
+        hoverArrow.Position.X := 392;
+        hoverArrow.Position.Y := 535;
+        hoverArrow.Visible := true;
+        hoverArrow_animation.Enabled := false;
+        hoverArrow_animation.StartValue := hoverArrow.Position.Y;
+        hoverArrow_animation.StopValue := hoverArrow.Position.Y - 40;
+        hoverArrow_animation.Enabled := true;
         // Office_Name Format =  L  H  H  -  X  X  X  X
         //                      [1][2][3][4][5][6][7][8]
         if office_name.Text[5] = '1' then
@@ -453,6 +461,15 @@ begin
         map_viewer.HScrollBar.Value := 27;
         map_viewer.VScrollBar.Value := 432;
         wubbenScience_glow.Enabled := true;
+
+        hoverArrow.Position.X := 280;
+        hoverArrow.Position.Y := 535;
+        hoverArrow.Visible := true;
+        hoverArrow_animation.Enabled := false;
+        hoverArrow_animation.StartValue := hoverArrow.Position.Y;
+        hoverArrow_animation.StopValue := hoverArrow.Position.Y - 40;
+        hoverArrow_animation.Enabled := true;
+
         // Office_Name Format =  W  S  -  X  X  X  X
         //                      [1][2][3][4][5][6][7]
         if office_name.Text[4] = '1' then
@@ -785,6 +802,7 @@ begin
     wubbenScience_glow.Enabled := false;
     lowellHeinyHall_glow.Enabled := false;
     legend.Bitmap.LoadFromFile('maps/action_findProfessor/legend.png');
+    hoverArrow.Visible := false;
     legend.Height := 183;
     legend.Width := 262;
 end;

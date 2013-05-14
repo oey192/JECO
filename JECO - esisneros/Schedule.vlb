@@ -13,9 +13,6 @@ Coordinates=259,155,80,51
 [Panel1]
 Coordinates=481,497,47,33
 
-[Panel3]
-Coordinates=422,497,47,33
-
 [btnQuit]
 Coordinates=57,357,50,51
 
@@ -24,9 +21,6 @@ Coordinates=41,261,91,51
 
 [btnViewSchMap]
 Coordinates=150,261,93,51
-
-[CMU_Montrose_Logo]
-Coordinates=462,1,120,51
 
 [coursePrefix]
 Coordinates=120,1,84,87
@@ -37,12 +31,6 @@ Coordinates=254,497,53,33
 [btnApproveSchedule]
 Coordinates=639,1,117,51
 
-[professorList]
-Coordinates=0,0,84,87
-
-[CMU_Logo]
-Coordinates=116,357,68,51
-
 [title_CMUScheduleAndProfile]
 Coordinates=240,1,159,51
 
@@ -51,9 +39,6 @@ Coordinates=811,1,53,33
 
 [Label_PPass]
 Coordinates=259,78,77,51
-
-[WCCC_Logo]
-Coordinates=639,309,77,51
 
 [colCourse]
 Coordinates=811,56,64,33
@@ -67,9 +52,6 @@ Coordinates=462,320,58,51
 
 [PPass_ComboBox]
 Coordinates=462,78,105,87
-
-[Title_ChooseCampus]
-Coordinates=323,261,119,51
 
 [courseSuffix]
 Coordinates=101,121,84,87
@@ -90,7 +72,7 @@ Coordinates=264,357,70,51
 Coordinates=811,331,79,33
 
 []
-Coordinates=639,386,72,33
+Coordinates=0,0,84,87
 
 [CSCI_Test]
 Coordinates=794,273,65,33
